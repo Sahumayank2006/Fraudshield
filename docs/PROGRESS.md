@@ -14,7 +14,7 @@
 | Phase | Milestone Description | Status | One-Line Note |
 |---|---|:---:|---|
 | **Phase 0** | Comprehensive Analysis & Foundations | [x] Complete | Analysed PDF (all 28 pages) and MD; wrote `ANALYSIS.md`, `DECISIONS.md`, and `PROGRESS.md`. Initialised git repo and created initial commit. |
-| **Phase 1** | Scaffold, Data Simulator & Loaders | [ ] Pending | Build project scaffold, config, run.py, requirements, LedgerSim generator, ULB/PaySim loaders, data cards, EDA artifact, and data tests. |
+| **Phase 1** | Scaffold, Data Simulator & Loaders | [x] Complete | Scaffolded config, requirements, run.py, LedgerSim simulator with 5 typologies and concept drift, ULB/PaySim loaders, DataCards, EDA artifact, and 9 passing tests. |
 | **Phase 2** | Feature Engineering & Online/Batch Parity | [ ] Pending | Rolling past-only velocity/behavioral features, FeatureStore state engine, leakage tests, and batch-online parity tests. |
 | **Phase 3** | Models, E1–E10 Experiments, Hybrid & Evaluation | [ ] Pending | Implement models E1–E10, out-of-fold anomaly fusion, calibration, threshold policy, bootstrap CIs, train-fast verification, and training pause gate. |
 | **Phase 4** | Explainability, Monitoring & Operations | [ ] Pending | Implement TreeSHAP explanations, reason code dictionary, PSI drift tracking, and challenger retrain/rollback. |
@@ -50,3 +50,4 @@
 - [ ] **Method (§10)**: 5-layer architecture SVG, 3 leakage gates, dynamic hypothesis verdicts (H1-H4), academic references, print stylesheet.
 - [ ] **Glossary (§11)**: Complete definitions of all 13 concepts from report Appendix C with mathematical equations and practical notes.
 - [ ] **Present Mode**: Fullscreen guided sequence, keyboard shortcuts (`P`, `A`, `Space`, `G`), cheat sheet overlay, first-run tour.
+

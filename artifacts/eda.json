@@ -1,0 +1,229 @@
+{
+  "dataset_name": "LedgerSim",
+  "total_records": 120000,
+  "fraud_count": 780,
+  "legitimate_count": 119220,
+  "fraud_rate": 0.0065,
+  "amount_distribution": {
+    "legitimate": {
+      "mean": 49.51,
+      "std": 79.18,
+      "min": 5.76,
+      "p5": 7.56,
+      "p25": 15.46,
+      "median": 29.08,
+      "p75": 56.26,
+      "p95": 144.52,
+      "p99": 315.27,
+      "max": 6193.69
+    },
+    "fraud": {
+      "mean": 5191.81,
+      "std": 7148.52,
+      "min": 1.02,
+      "p5": 2.53,
+      "p25": 67.83,
+      "median": 890.88,
+      "p75": 9002.8,
+      "p95": 20643.74,
+      "p99": 23995.32,
+      "max": 73112.33
+    }
+  },
+  "hourly_distribution": [
+    {
+      "hour": 0,
+      "total": 1123,
+      "fraud": 4,
+      "fraud_rate": 0.00356
+    },
+    {
+      "hour": 1,
+      "total": 1145,
+      "fraud": 10,
+      "fraud_rate": 0.00873
+    },
+    {
+      "hour": 2,
+      "total": 1090,
+      "fraud": 4,
+      "fraud_rate": 0.00367
+    },
+    {
+      "hour": 3,
+      "total": 1053,
+      "fraud": 3,
+      "fraud_rate": 0.00285
+    },
+    {
+      "hour": 4,
+      "total": 1092,
+      "fraud": 10,
+      "fraud_rate": 0.00916
+    },
+    {
+      "hour": 5,
+      "total": 1203,
+      "fraud": 9,
+      "fraud_rate": 0.00748
+    },
+    {
+      "hour": 6,
+      "total": 1357,
+      "fraud": 7,
+      "fraud_rate": 0.00516
+    },
+    {
+      "hour": 7,
+      "total": 1706,
+      "fraud": 10,
+      "fraud_rate": 0.00586
+    },
+    {
+      "hour": 8,
+      "total": 2200,
+      "fraud": 14,
+      "fraud_rate": 0.00636
+    },
+    {
+      "hour": 9,
+      "total": 2803,
+      "fraud": 28,
+      "fraud_rate": 0.00999
+    },
+    {
+      "hour": 10,
+      "total": 3582,
+      "fraud": 25,
+      "fraud_rate": 0.00698
+    },
+    {
+      "hour": 11,
+      "total": 4158,
+      "fraud": 30,
+      "fraud_rate": 0.00722
+    },
+    {
+      "hour": 12,
+      "total": 4672,
+      "fraud": 31,
+      "fraud_rate": 0.00664
+    },
+    {
+      "hour": 13,
+      "total": 5065,
+      "fraud": 38,
+      "fraud_rate": 0.0075
+    },
+    {
+      "hour": 14,
+      "total": 5288,
+      "fraud": 37,
+      "fraud_rate": 0.007
+    },
+    {
+      "hour": 15,
+      "total": 5176,
+      "fraud": 39,
+      "fraud_rate": 0.00753
+    },
+    {
+      "hour": 16,
+      "total": 4620,
+      "fraud": 35,
+      "fraud_rate": 0.00758
+    },
+    {
+      "hour": 17,
+      "total": 4325,
+      "fraud": 23,
+      "fraud_rate": 0.00532
+    },
+    {
+      "hour": 18,
+      "total": 3554,
+      "fraud": 32,
+      "fraud_rate": 0.009
+    },
+    {
+      "hour": 19,
+      "total": 2806,
+      "fraud": 13,
+      "fraud_rate": 0.00463
+    },
+    {
+      "hour": 20,
+      "total": 2163,
+      "fraud": 15,
+      "fraud_rate": 0.00693
+    },
+    {
+      "hour": 21,
+      "total": 1691,
+      "fraud": 12,
+      "fraud_rate": 0.0071
+    },
+    {
+      "hour": 22,
+      "total": 1348,
+      "fraud": 9,
+      "fraud_rate": 0.00668
+    },
+    {
+      "hour": 23,
+      "total": 56780,
+      "fraud": 342,
+      "fraud_rate": 0.00602
+    }
+  ],
+  "channel_distribution": [
+    {
+      "channel": "card_present",
+      "total": 47463,
+      "fraud": 0,
+      "fraud_rate": 0.0
+    },
+    {
+      "channel": "online",
+      "total": 38523,
+      "fraud": 267,
+      "fraud_rate": 0.00693
+    },
+    {
+      "channel": "transfer",
+      "total": 7392,
+      "fraud": 340,
+      "fraud_rate": 0.046
+    },
+    {
+      "channel": "upi",
+      "total": 26622,
+      "fraud": 173,
+      "fraud_rate": 0.0065
+    }
+  ],
+  "typology_counts": {
+    "none": 119220,
+    "ato": 209,
+    "cnp": 175,
+    "app": 148,
+    "mule_chain": 132,
+    "card_testing": 116
+  },
+  "drift_check": {
+    "early_cutoff_timestamp": 2591979.52,
+    "early_records": 89992,
+    "late_records": 30008,
+    "early_frauds": 611,
+    "late_frauds": 169,
+    "amount_ks_statistic_overall": 0.0057,
+    "amount_ks_pvalue_overall": 0.45518540891136217,
+    "amount_ks_statistic_fraud": 0.1269,
+    "amount_ks_pvalue_fraud": 0.025410364430524877,
+    "amount_psi_overall": 0.0003,
+    "amount_psi_fraud": 0.333,
+    "fraud_rate_early": 0.00679,
+    "fraud_rate_late": 0.00563,
+    "has_statistically_significant_drift": true
+  }
+}

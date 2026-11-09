@@ -1,0 +1,128 @@
+{
+  "LedgerSim": {
+    "dataset_name": "LedgerSim",
+    "total_records": 120000,
+    "fraud_count": 780,
+    "legitimate_count": 119220,
+    "fraud_rate": 0.0065,
+    "fraud_percentage": "0.650%",
+    "duration_days": 30.0,
+    "time_col": "ts",
+    "target_col": "is_fraud",
+    "columns_count": 22,
+    "columns": [
+      {
+        "name": "txn_id",
+        "dtype": "object",
+        "null_count": 0
+      },
+      {
+        "name": "ts",
+        "dtype": "float64",
+        "null_count": 0
+      },
+      {
+        "name": "account_id",
+        "dtype": "object",
+        "null_count": 0
+      },
+      {
+        "name": "merchant_id",
+        "dtype": "object",
+        "null_count": 0
+      },
+      {
+        "name": "merchant_category",
+        "dtype": "object",
+        "null_count": 0
+      },
+      {
+        "name": "amount",
+        "dtype": "float32",
+        "null_count": 0
+      },
+      {
+        "name": "channel",
+        "dtype": "object",
+        "null_count": 0
+      },
+      {
+        "name": "device_id",
+        "dtype": "object",
+        "null_count": 0
+      },
+      {
+        "name": "device_is_new",
+        "dtype": "int32",
+        "null_count": 0
+      },
+      {
+        "name": "ip_region",
+        "dtype": "object",
+        "null_count": 0
+      },
+      {
+        "name": "region_mismatch",
+        "dtype": "int32",
+        "null_count": 0
+      },
+      {
+        "name": "hour",
+        "dtype": "int32",
+        "null_count": 0
+      },
+      {
+        "name": "is_night",
+        "dtype": "int32",
+        "null_count": 0
+      },
+      {
+        "name": "oldbalance",
+        "dtype": "float32",
+        "null_count": 0
+      },
+      {
+        "name": "newbalance",
+        "dtype": "float32",
+        "null_count": 0
+      },
+      {
+        "name": "dest_account_id",
+        "dtype": "object",
+        "null_count": 0
+      },
+      {
+        "name": "dest_is_new_payee",
+        "dtype": "int32",
+        "null_count": 0
+      },
+      {
+        "name": "session_seconds",
+        "dtype": "float32",
+        "null_count": 0
+      },
+      {
+        "name": "pwd_reset_last_24h",
+        "dtype": "int32",
+        "null_count": 0
+      },
+      {
+        "name": "is_fraud",
+        "dtype": "int32",
+        "null_count": 0
+      },
+      {
+        "name": "fraud_type",
+        "dtype": "object",
+        "null_count": 0
+      },
+      {
+        "name": "label_mature_ts",
+        "dtype": "float64",
+        "null_count": 0
+      }
+    ],
+    "memory_mb": 73.85,
+    "caveats": []
+  }
+}

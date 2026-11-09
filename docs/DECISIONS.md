@@ -106,3 +106,4 @@ The following value-add features are incorporated to elevate the system's scient
    - A guided 6-minute presentation mode with keyboard-driven walkthrough (`P`, `Space`, `A`, `G` shortcuts) and state preservation in `localStorage`.
 5. **Print-Optimized Method Page**:
    - CSS `@media print` styling enabling one-click browser export of the entire §10 Method screen into an academic-style research paper PDF.
+
