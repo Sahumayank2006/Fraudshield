@@ -8,6 +8,7 @@ import { SignalBlock, SignalReview, SignalApprove } from "./components/common/Ic
 import { LiveDesk } from "./views/LiveDesk";
 import { CaseFile } from "./views/CaseFile";
 import { Briefing } from "./views/Briefing";
+import { ThresholdLab } from "./views/ThresholdLab";
 
 export const App: React.FC = () => {
   const [activeScreen, setActiveScreen] = useState<ScreenId>("live");
@@ -123,8 +124,12 @@ export const App: React.FC = () => {
         <Briefing onNavigateScreen={(screen) => setActiveScreen(screen as ScreenId)} />
       )}
 
-      {/* Other screens placeholder for Phase 10 - 17 */}
-      {!["live", "case", "briefing"].includes(activeScreen) && (
+      {activeScreen === "threshold" && (
+        <ThresholdLab />
+      )}
+
+      {/* Other screens placeholder for Phase 11 - 17 */}
+      {!["live", "case", "briefing", "threshold"].includes(activeScreen) && (
         <div style={{ padding: "var(--space-8)", backgroundColor: "var(--paper-raised)", border: "1px solid var(--rule)" }}>
           <span className="eyebrow" style={{ color: "var(--ink-faint)" }}>Phase Pipeline</span>
           <h2 style={{ marginTop: 8 }}>Section §{activeScreen.toUpperCase()}</h2>

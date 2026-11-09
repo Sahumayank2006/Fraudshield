@@ -524,11 +524,35 @@ def simulate_threshold_policy(
             t2=sim_t2,
             cost_mode=cost_mode,
         )
+
+        # Compute 50-bin mirrored density curves for legitimate vs fraud scores
+        bins = np.linspace(0.0, 1.0, 51)
+        legit_scores = probs[y_true == 0] if len(probs[y_true == 0]) > 0 else np.array([0.0])
+        fraud_scores = probs[y_true == 1] if len(probs[y_true == 1]) > 0 else np.array([1.0])
+
+        legit_hist, _ = np.histogram(legit_scores, bins=bins)
+        fraud_hist, _ = np.histogram(fraud_scores, bins=bins)
+
+        legit_max = max(1, int(np.max(legit_hist)))
+        fraud_max = max(1, int(np.max(fraud_hist)))
+
+        density_data = [
+            {
+                "bin": round(float((bins[i] + bins[i+1]) / 2.0), 3),
+                "legit_count": int(legit_hist[i]),
+                "fraud_count": int(fraud_hist[i]),
+                "legit_norm": round(float(legit_hist[i] / legit_max), 4),
+                "fraud_norm": round(float(fraud_hist[i] / fraud_max), 4),
+            }
+            for i in range(len(legit_hist))
+        ]
+
         return {
             "t1": sim_t1,
             "t2": sim_t2,
             "cost_mode": cost_mode,
             "metrics": res,
+            "density": density_data,
             "is_what_if": True,
             "capacity_violated": bool(res.get("capacity_exceeded", False)),
         }

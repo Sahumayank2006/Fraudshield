@@ -23,7 +23,7 @@
 | **Phase 7** | Screen: §02 Live Desk | [x] Complete | Real-time streaming ledger table, probability gauge, speed controls (0.5x–50x), scripted attack burst controls with containment telemetry, and drawer preview. |
 | **Phase 8** | Screen: §03 Case File | [x] Complete | Full transaction dossier form ledger, dual-threshold score gauge with 95% CI, local TreeSHAP waterfall SVG, dynamic reason codes, 20-event account history timeline, top-3 similar historical cases, and persistent SQLite disposition actions (Confirm, Dismiss, Escalate). |
 | **Phase 9** | Screen: §01 Briefing | [x] Complete | Single editorial landing page with dynamic serif headline, headline KPI ledger (PR-AUC, Recall@P90, expected cost reduction, FP burden), champion vs baseline PR curve with marked operating points, heuristic rules benchmark, and marginal notes. |
-| **Phase 10** | Screen: §04 Threshold Lab | [ ] Pending | Interactive dual-handle threshold slider, score distribution density, live confusion matrix, cost curve, snap-to-optimal. |
+| **Phase 10** | Screen: §04 Threshold Lab | [x] Complete | Mirrored legitimate vs fraud score density plot with dual draggable handles (t1, t2), live confusion matrix, precision/recall/F2/MCC readouts, flat vs amount-weighted cost model, snap-to-optimal button, capacity check, and cost-vs-threshold small multiple curve. |
 | **Phase 11** | Screen: §05 Model Lab | [ ] Pending | E1–E10 experiment table with CIs, PR vs ROC pedagogical panel, early/late drift tabs, calibration curves, and dataset selector. |
 | **Phase 12** | Screen: §06 Why (Explainability) | [ ] Pending | Global SHAP summary bar & beeswarm, dependence plot picker, permutation importance cross-check, and causality caution. |
 | **Phase 13** | Screen: §07 Drift & Operations | [ ] Pending | PSI feature table, score drift overlay, weekly PR tracker, retrain challenger workflow with side-by-side gate & rollback. |
@@ -41,7 +41,7 @@
 - [x] **Live Desk (§02)**: Real-time SSE stream, speed controls (1x-50x), attack burst simulator, transaction drawer trigger.
 - [x] **Case File (§03)**: Form-like transaction record, SHAP waterfall, plain-English reasons, account history, persistent actions.
 - [x] **Briefing (§01)**: Dynamic editorial summary, headline metrics, PR curve with operating points, rule baseline comparison.
-- [ ] **Threshold Lab (§04)**: Draggable $t_1, t_2$ handles, mirrored density plot, live cost model (flat vs amount-weighted), snap button.
+- [x] **Threshold Lab (§04)**: Draggable $t_1, t_2$ handles, mirrored density plot, live cost model (flat vs amount-weighted), snap button.
 - [ ] **Model Lab (§05)**: E1–E10 sortable matrix, bootstrap CIs, ROC vs PR flattery comparison, early vs late drift test, dataset switcher.
 - [ ] **Why (§06)**: Global feature ranking, beeswarm plot, dependence plots, permutation importance cross-check.
 - [ ] **Drift & Operations (§07)**: PSI table with status badges, score distribution drift, retrain trigger, champion vs challenger gate, rollback.
