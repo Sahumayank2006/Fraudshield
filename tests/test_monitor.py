@@ -165,3 +165,4 @@ def test_baseline_drift_monitor_artifact():
     assert "weekly_performance" in data
     assert "model_registry" in data
     assert len(data["feature_psi_table"]) > 0
+

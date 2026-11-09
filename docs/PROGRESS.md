@@ -18,7 +18,7 @@
 | **Phase 2** | Feature Engineering & Online/Batch Parity | [x] Complete | Built FeatureStore and extract_features with strict past-only rolling velocity/behavioural features; 17 passing tests proving future-invariance and 100% batch-online parity. |
 | **Phase 3** | Models, E1–E10 Experiments, Hybrid & Evaluation | [x] Complete | Built E1–E10 models, imbalance resampling, K-fold OOF anomaly fusion, isotonic calibration, dual-threshold policy, 1000 bootstrap CIs, H1–H4 tests, and 25 passing test suite. |
 | **Phase 4** | Explainability, Monitoring & Operations | [x] Complete | Built TreeSHAP explainer, dynamic reason codes, global beeswarm/dependence artifacts, PSI drift monitoring with 7d label maturation, and challenger retrain/rollback. |
-| **Phase 5** | FastAPI Backend, SQLite Store & SSE Engine | [ ] Pending | Build all 17+ REST endpoints, SQLite case repository, SSE replay stream, scripted attack bursts, and API test suite. |
+| **Phase 5** | FastAPI Backend, SQLite Store & SSE Engine | [x] Complete | Built all 21 REST endpoints, SQLite case/audit store, SSE live replay stream, scripted attack bursts (card_testing, ato, mule_chain), and 15 passing API tests (50 total). |
 | **Phase 6** | Frontend Foundation & Design System | [ ] Pending | Establish tokens.css, locally vendored Fraunces/IBM Plex fonts, paper light theme, layout shell, navigation, and SVG chart primitives. |
 | **Phase 7** | Screen: §02 Live Desk | [ ] Pending | Streaming ledger table, volume strip, live counters, latency meter, play/pause/speed controls, attack trigger button. |
 | **Phase 8** | Screen: §03 Case File | [ ] Pending | Transaction details ledger, probability gauge, SHAP waterfall, account history strip, similar cases, and SQLite action buttons. |

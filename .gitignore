@@ -21,6 +21,10 @@ data/raw/*.csv
 data/processed/*.parquet
 data/processed/*.csv
 
+# Database
+*.db
+*.sqlite3
+
 # Node / Frontend
 frontend/node_modules/
 frontend/.vite/

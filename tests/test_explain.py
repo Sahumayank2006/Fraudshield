@@ -128,3 +128,4 @@ def test_global_shap_summary_artifact():
     assert len(data["dependence"]) > 0
     assert "causality_caution" in data
     assert data["causality_caution"] == CAUSALITY_CAUTION
+

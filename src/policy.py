@@ -219,3 +219,78 @@ def evaluate_decision(
         "model_version": model_version,
     }
 
+
+def simulate_policy_thresholds(
+    y_true: np.ndarray,
+    y_prob: np.ndarray,
+    amounts: Optional[np.ndarray] = None,
+    t1: float = 0.005,
+    t2: float = 0.059,
+    cost_mode: str = "amount_weighted",
+) -> Dict[str, Any]:
+    """
+    Simulate decision policy with arbitrary thresholds:
+    Computes confusion matrix, precision, recall, F1, F2, MCC, cost, and review queue capacity check.
+    """
+    y_true = np.asarray(y_true, dtype=int)
+    y_prob = np.asarray(y_prob, dtype=float)
+    N = len(y_true)
+
+    if amounts is None:
+        amounts = np.ones(N) * 100.0
+    else:
+        amounts = np.asarray(amounts, dtype=float)
+
+    is_flagged = (y_prob >= t1).astype(int)
+    is_blocked = (y_prob >= t2).astype(int)
+    is_reviewed = ((y_prob >= t1) & (y_prob < t2)).astype(int)
+    is_approved = (y_prob < t1).astype(int)
+
+    tp = int(((is_flagged == 1) & (y_true == 1)).sum())
+    fp = int(((is_flagged == 1) & (y_true == 0)).sum())
+    fn = int(((is_flagged == 0) & (y_true == 1)).sum())
+    tn = int(((is_flagged == 0) & (y_true == 0)).sum())
+
+    prec = float(tp / (tp + fp)) if (tp + fp) > 0 else 0.0
+    rec = float(tp / (tp + fn)) if (tp + fn) > 0 else 0.0
+    f1 = float(2 * (prec * rec) / (prec + rec)) if (prec + rec) > 0 else 0.0
+    beta = 2.0
+    f2 = float((1 + beta**2) * (prec * rec) / (beta**2 * prec + rec)) if (beta**2 * prec + rec) > 0 else 0.0
+
+    denom = np.sqrt(float((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn)))
+    mcc = float((tp * tn - fp * fn) / denom) if denom > 0 else 0.0
+
+    review_count = int(is_reviewed.sum())
+    blocked_count = int(is_blocked.sum())
+    approved_count = int(is_approved.sum())
+
+    review_queue_rate = (review_count / max(1, N)) * 1000.0
+    capacity_exceeded = review_queue_rate > MAX_REVIEWS_PER_1000
+
+    # Calculate financial cost
+    from src.evaluate import calculate_expected_cost
+    if cost_mode == "amount_weighted":
+        total_cost = calculate_expected_cost(
+            y_true, y_prob, threshold=t1, amounts=amounts, mode="amount_weighted"
+        )
+    else:
+        total_cost = calculate_expected_cost(
+            y_true, y_prob, threshold=t1, mode="flat"
+        )
+
+    return {
+        "confusion_matrix": {"tp": tp, "fn": fn, "fp": fp, "tn": tn},
+        "precision": round(prec, 4),
+        "recall": round(rec, 4),
+        "f1": round(f1, 4),
+        "f2": round(f2, 4),
+        "mcc": round(mcc, 4),
+        "expected_cost": round(float(total_cost), 2),
+        "review_count": review_count,
+        "blocked_count": blocked_count,
+        "approved_count": approved_count,
+        "review_queue_rate_per_1000": round(review_queue_rate, 2),
+        "capacity_exceeded": capacity_exceeded,
+        "max_capacity_per_1000": MAX_REVIEWS_PER_1000,
+    }
+
