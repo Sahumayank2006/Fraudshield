@@ -20,7 +20,7 @@
 | **Phase 4** | Explainability, Monitoring & Operations | [x] Complete | Built TreeSHAP explainer, dynamic reason codes, global beeswarm/dependence artifacts, PSI drift monitoring with 7d label maturation, and challenger retrain/rollback. |
 | **Phase 5** | FastAPI Backend, SQLite Store & SSE Engine | [x] Complete | Built all 21 REST endpoints, SQLite case/audit store, SSE live replay stream, scripted attack bursts (card_testing, ato, mule_chain), and 15 passing API tests (50 total). |
 | **Phase 6** | Frontend Foundation & Design System | [x] Complete | Built tokens.css design system, Fraunces/IBM Plex typography, paper/night themes, 12-col layout shell, §01-§11 left rail, hand-crafted SVG line & waterfall charts, and bundled SPA. |
-| **Phase 7** | Screen: §02 Live Desk | [ ] Pending | Streaming ledger table, volume strip, live counters, latency meter, play/pause/speed controls, attack trigger button. |
+| **Phase 7** | Screen: §02 Live Desk | [x] Complete | Real-time streaming ledger table, probability gauge, speed controls (0.5x–50x), scripted attack burst controls with containment telemetry, and drawer preview. |
 | **Phase 8** | Screen: §03 Case File | [ ] Pending | Transaction details ledger, probability gauge, SHAP waterfall, account history strip, similar cases, and SQLite action buttons. |
 | **Phase 9** | Screen: §01 Briefing | [ ] Pending | Editorial headline, headline KPI ledger, champion PR curve, rules-engine baseline comparison, and marginal notes. |
 | **Phase 10** | Screen: §04 Threshold Lab | [ ] Pending | Interactive dual-handle threshold slider, score distribution density, live confusion matrix, cost curve, snap-to-optimal. |
@@ -38,7 +38,7 @@
 
 ## Detailed Screen Checklist
 
-- [ ] **Live Desk (§02)**: Real-time SSE stream, speed controls (1x-50x), attack burst simulator, transaction drawer trigger.
+- [x] **Live Desk (§02)**: Real-time SSE stream, speed controls (1x-50x), attack burst simulator, transaction drawer trigger.
 - [ ] **Case File (§03)**: Form-like transaction record, SHAP waterfall, plain-English reasons, account history, persistent actions.
 - [ ] **Briefing (§01)**: Dynamic editorial summary, headline metrics, PR curve with operating points, rule baseline comparison.
 - [ ] **Threshold Lab (§04)**: Draggable $t_1, t_2$ handles, mirrored density plot, live cost model (flat vs amount-weighted), snap button.

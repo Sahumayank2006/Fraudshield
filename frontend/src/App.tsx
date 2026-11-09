@@ -5,9 +5,11 @@ import { SvgLineChart } from "./components/charts/SvgLineChart";
 import { SvgWaterfall } from "./components/charts/SvgWaterfall";
 import { fetchHealth, fetchOverview, fetchCurves, triggerAttack, controlStream } from "./api/client";
 import { SignalBlock, SignalReview, SignalApprove } from "./components/common/Icons";
+import { LiveDesk } from "./views/LiveDesk";
 
 export const App: React.FC = () => {
-  const [activeScreen, setActiveScreen] = useState<ScreenId>("briefing");
+  const [activeScreen, setActiveScreen] = useState<ScreenId>("live");
+  const [selectedCaseId, setSelectedCaseId] = useState<string | null>(null);
   const [healthData, setHealthData] = useState<any>(null);
   const [overviewData, setOverviewData] = useState<any>(null);
   const [curvesData, setCurvesData] = useState<any>(null);
@@ -28,14 +30,14 @@ export const App: React.FC = () => {
       }
       if (e.key === "p" || e.key === "P") {
         e.preventDefault();
-        alert("Presentation mode shortcut triggered. (Full Present Mode is scheduled for Phase 18)");
-      } else if (e.key === "a" || e.key === "A") {
+        alert("Presentation mode shortcut [P] triggered. (Full Present Mode is scheduled for Phase 18)");
+      } else if (activeScreen !== "live" && (e.key === "a" || e.key === "A")) {
         e.preventDefault();
         triggerAttack("card_testing", 15).then(() => {
           setAttackToast("⚡ Scripted attack burst injected: card_testing (15 micro-transactions)");
           setTimeout(() => setAttackToast(null), 4000);
         });
-      } else if (e.key === " ") {
+      } else if (activeScreen !== "live" && e.code === "Space") {
         e.preventDefault();
         controlStream("pause");
       }
@@ -43,7 +45,7 @@ export const App: React.FC = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [activeScreen]);
 
   // Extract PR curve coordinates for chart primitive preview
   const championPrCurve = curvesData?.champion_e9?.pr_curve || [
@@ -73,7 +75,7 @@ export const App: React.FC = () => {
       onSelectScreen={setActiveScreen}
       openCasesCount={overviewData?.session?.open_cases_count || 15}
     >
-      {/* Scripted Attack Toast Banner */}
+      {/* Scripted Attack Toast Banner (when triggered outside Live Desk) */}
       {attackToast && (
         <div
           style={{
@@ -98,86 +100,152 @@ export const App: React.FC = () => {
         </div>
       )}
 
-      {/* Screen Title & Editorial Deck */}
-      <div style={{ marginBottom: "var(--space-6)", borderBottom: "1px solid var(--rule)", paddingBottom: "var(--space-4)" }}>
-        <div style={{ display: "flex", alignItems: "baseline", gap: "var(--space-3)" }}>
-          <span className="eyebrow" style={{ color: "var(--block)" }}>
-            Foundation Shell Verified
-          </span>
-          <span style={{ fontSize: 12, color: "var(--ink-faint)", fontFamily: "var(--font-mono)" }}>
-            Active Section: §{activeScreen.toUpperCase()}
-          </span>
-        </div>
-        <h1 style={{ marginTop: "var(--space-2)" }}>
-          The Fraud Desk — Hybrid Detection & Operations Console
-        </h1>
-        <p style={{ fontSize: 14, color: "var(--ink-soft)", marginTop: "var(--space-2)", maxWidth: 900 }}>
-          Designed for high-throughput financial payment monitoring. Evaluates transactions through an unsupervised
-          isolation & autoencoder branch fused into class-weighted gradient boosting, calibrated for real-money loss prevention.
-        </p>
-      </div>
+      {/* Screen Router */}
+      {activeScreen === "live" && (
+        <LiveDesk
+          onOpenCaseFile={(caseId) => {
+            setSelectedCaseId(caseId);
+            setActiveScreen("case");
+          }}
+        />
+      )}
 
-      {/* Decision Signal Encoding Legend */}
-      <div
-        style={{
-          display: "flex",
-          gap: "var(--space-6)",
-          padding: "var(--space-3) var(--space-4)",
-          backgroundColor: "var(--paper-raised)",
-          border: "1px solid var(--rule)",
-          marginBottom: "var(--space-6)",
-          alignItems: "center",
-        }}
-      >
-        <span className="eyebrow">Decision Tiers:</span>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
-          <SignalBlock size={13} />
-          <span style={{ fontWeight: 600, color: "var(--block)" }}>BLOCK</span> (t2 &ge; {healthData?.t2_block?.toFixed(3) || "0.059"})
+      {activeScreen === "case" && (
+        <div style={{ padding: "var(--space-6)", backgroundColor: "var(--paper-raised)", border: "1px solid var(--rule)" }}>
+          <div className="eyebrow" style={{ color: "var(--review)", marginBottom: 8 }}>§03 Case File (Scheduled for Phase 8)</div>
+          <h2>Investigating Transaction: {selectedCaseId || "CASE-0001"}</h2>
+          <p style={{ marginTop: 8, fontSize: 14, color: "var(--ink-soft)" }}>
+            Phase 8 will deliver the full Case File screen: 20-event chronological account timeline, local TreeSHAP waterfall,
+            nearest historical neighbor fraud fingerprints, and one-click analyst actions (Confirm, Dismiss, Escalate).
+          </p>
+          <button
+            onClick={() => setActiveScreen("live")}
+            style={{
+              marginTop: 16,
+              backgroundColor: "var(--ink)",
+              color: "var(--paper)",
+              border: "none",
+              padding: "6px 12px",
+              fontFamily: "var(--font-mono)",
+              fontSize: 12,
+              cursor: "pointer",
+            }}
+          >
+            &larr; Return to §02 Live Desk
+          </button>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
-          <SignalReview size={13} />
-          <span style={{ fontWeight: 600, color: "var(--review)" }}>REVIEW</span> (t1 &ge; {healthData?.t1_review?.toFixed(3) || "0.005"})
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
-          <SignalApprove size={13} />
-          <span style={{ fontWeight: 600, color: "var(--approve)" }}>APPROVE</span> (&lt; t1)
-        </div>
-      </div>
+      )}
 
-      {/* Two-Column Asymmetric Layout for Foundation Charts */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "var(--space-8)" }}>
-        {/* Left Column: Hand-Built SVG Line Chart */}
+      {activeScreen === "briefing" && (
         <div>
-          <SvgLineChart
-            title="Champion Model Precision-Recall Curve (E9 Hybrid)"
-            finding="Maintains 90% precision up to 58.0% recall, outperforming baseline models under concept drift."
-            series={[
-              {
-                name: "E9 Hybrid (OOF + Anomaly)",
-                color: "var(--block)",
-                points: championPrCurve.map((pt: any) => ({ x: pt.recall || pt.x, y: pt.precision || pt.y })),
-                strokeWidth: 2.2,
-              },
-            ]}
-          />
-          <div className="marginalia">
-            Note: The PR curve reflects honest holdout test performance on the 70/15/15 chronological split. ROC-AUC is
-            intentionally superseded as the primary metric because extreme 0.65% class imbalance causes false flattery.
+          {/* Screen Title & Editorial Deck */}
+          <div style={{ marginBottom: "var(--space-6)", borderBottom: "1px solid var(--rule)", paddingBottom: "var(--space-4)" }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: "var(--space-3)" }}>
+              <span className="eyebrow" style={{ color: "var(--block)" }}>
+                §01 Operational Briefing
+              </span>
+              <span style={{ fontSize: 12, color: "var(--ink-faint)", fontFamily: "var(--font-mono)" }}>
+                Active Model: E9 Hybrid Champion
+              </span>
+            </div>
+            <h1 style={{ marginTop: "var(--space-2)" }}>
+              The Fraud Desk — Executive & Operations Briefing
+            </h1>
+            <p style={{ fontSize: 14, color: "var(--ink-soft)", marginTop: "var(--space-2)", maxWidth: 900 }}>
+              Production payment protection summary. Evaluates transactions through an unsupervised
+              isolation & autoencoder branch fused into class-weighted gradient boosting, calibrated for real-money loss prevention.
+            </p>
+          </div>
+
+          {/* Decision Signal Encoding Legend */}
+          <div
+            style={{
+              display: "flex",
+              gap: "var(--space-6)",
+              padding: "var(--space-3) var(--space-4)",
+              backgroundColor: "var(--paper-raised)",
+              border: "1px solid var(--rule)",
+              marginBottom: "var(--space-6)",
+              alignItems: "center",
+            }}
+          >
+            <span className="eyebrow">Decision Tiers:</span>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+              <SignalBlock size={13} />
+              <span style={{ fontWeight: 600, color: "var(--block)" }}>BLOCK</span> (t2 &ge; {healthData?.t2_block?.toFixed(3) || "0.059"})
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+              <SignalReview size={13} />
+              <span style={{ fontWeight: 600, color: "var(--review)" }}>REVIEW</span> (t1 &ge; {healthData?.t1_review?.toFixed(3) || "0.005"})
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
+              <SignalApprove size={13} />
+              <span style={{ fontWeight: 600, color: "var(--approve)" }}>APPROVE</span> (&lt; t1)
+            </div>
+          </div>
+
+          {/* Two-Column Asymmetric Layout for Foundation Charts */}
+          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "var(--space-8)" }}>
+            {/* Left Column: Hand-Built SVG Line Chart */}
+            <div>
+              <SvgLineChart
+                title="Champion Model Precision-Recall Curve (E9 Hybrid)"
+                finding="Maintains 90% precision up to 58.0% recall, outperforming baseline models under concept drift."
+                series={[
+                  {
+                    name: "E9 Hybrid (OOF + Anomaly)",
+                    color: "var(--block)",
+                    points: championPrCurve.map((pt: any) => ({ x: pt.recall || pt.x, y: pt.precision || pt.y })),
+                    strokeWidth: 2.2,
+                  },
+                ]}
+              />
+              <div className="marginalia">
+                Note: The PR curve reflects honest holdout test performance on the 70/15/15 chronological split. ROC-AUC is
+                intentionally superseded as the primary metric because extreme 0.65% class imbalance causes false flattery.
+              </div>
+            </div>
+
+            {/* Right Column: Hand-Built SVG SHAP Waterfall Chart */}
+            <div>
+              <SvgWaterfall
+                steps={sampleWaterfall}
+                title="Local TreeSHAP Waterfall (Sample Transaction)"
+                finding="Stepwise attribution demonstrates how high transaction scale and isolation anomaly pushed log-odds past the block threshold."
+              />
+              <div className="marginalia">
+                Causality Caution: SHAP values explain statistical associations learned by the boosted tree ensemble; they do not represent real-world physical causality.
+              </div>
+            </div>
           </div>
         </div>
+      )}
 
-        {/* Right Column: Hand-Built SVG SHAP Waterfall Chart */}
-        <div>
-          <SvgWaterfall
-            steps={sampleWaterfall}
-            title="Local TreeSHAP Waterfall (Sample Transaction)"
-            finding="Stepwise attribution demonstrates how high transaction scale and isolation anomaly pushed log-odds past the block threshold."
-          />
-          <div className="marginalia">
-            Causality Caution: SHAP values explain statistical associations learned by the boosted tree ensemble; they do not represent real-world physical causality.
-          </div>
+      {/* Other screens placeholder for Phase 10 - 17 */}
+      {!["live", "case", "briefing"].includes(activeScreen) && (
+        <div style={{ padding: "var(--space-8)", backgroundColor: "var(--paper-raised)", border: "1px solid var(--rule)" }}>
+          <span className="eyebrow" style={{ color: "var(--ink-faint)" }}>Phase Pipeline</span>
+          <h2 style={{ marginTop: 8 }}>Section §{activeScreen.toUpperCase()}</h2>
+          <p style={{ marginTop: 8, fontSize: 14, color: "var(--ink-soft)" }}>
+            This screen is scheduled for development in sequential order per the Phase Stop-and-Check protocol.
+          </p>
+          <button
+            onClick={() => setActiveScreen("live")}
+            style={{
+              marginTop: 16,
+              backgroundColor: "var(--ink)",
+              color: "var(--paper)",
+              border: "none",
+              padding: "6px 12px",
+              fontFamily: "var(--font-mono)",
+              fontSize: 12,
+              cursor: "pointer",
+            }}
+          >
+            &larr; Switch to §02 Live Desk
+          </button>
         </div>
-      </div>
+      )}
     </Layout>
   );
 };

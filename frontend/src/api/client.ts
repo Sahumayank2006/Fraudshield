@@ -149,3 +149,61 @@ export async function triggerAttack(attackType: string, count: number = 15) {
   });
   return res.json();
 }
+
+/**
+ * React hook to connect to the Server-Sent Events (SSE) live replay stream.
+ */
+import { useEffect, useRef, useState } from "react";
+
+export function useSseStream(
+  onTransaction: (tx: TransactionData) => void,
+  speed: number = 2.0,
+  enabled: boolean = true
+) {
+  const [isConnected, setIsConnected] = useState<boolean>(false);
+  const eventSourceRef = useRef<EventSource | null>(null);
+
+  useEffect(() => {
+    if (!enabled) {
+      if (eventSourceRef.current) {
+        eventSourceRef.current.close();
+        eventSourceRef.current = null;
+        setIsConnected(false);
+      }
+      return;
+    }
+
+    const sseUrl = `${BASE_URL}/stream?speed=${speed}`;
+    const es = new EventSource(sseUrl);
+    eventSourceRef.current = es;
+
+    es.onopen = () => {
+      setIsConnected(true);
+    };
+
+    es.onmessage = (event) => {
+      try {
+        if (!event.data || event.data.startsWith(":")) return; // Heartbeat
+        const parsed = JSON.parse(event.data);
+        if (parsed.type === "TRANSACTION" && parsed.data) {
+          onTransaction(parsed.data);
+        }
+      } catch (err) {
+        console.error("Error parsing SSE event:", err);
+      }
+    };
+
+    es.onerror = () => {
+      setIsConnected(false);
+    };
+
+    return () => {
+      es.close();
+      eventSourceRef.current = null;
+      setIsConnected(false);
+    };
+  }, [enabled, speed, onTransaction]);
+
+  return { isConnected };
+}
+

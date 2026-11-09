@@ -63,3 +63,4 @@ export const SvgChartContainer: React.FC<SvgChartContainerProps> = ({
     </div>
   );
 };
+

@@ -539,3 +539,4 @@ class StorageManager:
 
 # Global singleton instance
 storage_manager = StorageManager()
+

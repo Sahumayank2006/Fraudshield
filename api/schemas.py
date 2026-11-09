@@ -114,3 +114,4 @@ class ThresholdSimQuery(BaseModel):
     t1: Optional[float] = Field(None, ge=0.0, le=1.0)
     t2: Optional[float] = Field(None, ge=0.0, le=1.0)
     cost_mode: Optional[Literal["flat", "amount_weighted"]] = "amount_weighted"
+

@@ -77,3 +77,4 @@ export const IconCross: React.FC<IconProps> = ({ size = 14, color = "currentColo
     <line x1="13" y1="3" x2="3" y2="13" stroke={color} strokeWidth="1.5" strokeLinecap="square" />
   </svg>
 );
+
