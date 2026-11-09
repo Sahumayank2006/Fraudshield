@@ -27,7 +27,7 @@
 | **Phase 11** | Screen: §05 Model Lab | [x] Complete | Sortable E1–E10 systematic experiment matrix with 95% bootstrap CIs, diagnostic tabs for PR, ROC (with pedagogical majority flattery note), reliability calibration, concept drift (early vs late), ablation, evasion probe, and multi-dataset switcher. |
 | **Phase 12** | Screen: §06 Why (Explainability) | [x] Complete | Global feature ranking bar chart (mean |SHAP|), hand-crafted SVG beeswarm plot (2,000+ holdout transactions with density jitter), partial dependence plot picker for top 6 features, permutation importance cross-check table, and academic causality caution. |
 | **Phase 13** | Screen: §07 Drift & Operations | [x] Complete | Population Stability Index (PSI) feature table with status badges (Stable, Moderate, Significant), score distribution then-vs-now overlay, weekly performance with 7-day maturation delay, automated drift alert banner, and challenger retrain workflow with side-by-side gate and atomic rollback. |
-| **Phase 14** | Screen: §08 Fairness & Risk | [ ] Pending | Multi-group FPR segment audit, -30% evasion probe, DPDP/RBI governance statement, human-in-the-loop review policy. |
+| **Phase 14** | Screen: §08 Fairness & Risk | [x] Complete | Multi-group FPR segment audit (10 regions, 4 channels), -30% adversarial amount evasion probe, DPDP Act 2023 / RBI Master Directions / SR 11-7 compliance matrix, and HITL capacity & explanation rights. |
 | **Phase 15** | Screen: §09 Batch | [ ] Pending | CSV drag-and-drop, schema validation, batch scoring progress, flagged rows table with reason codes, downloadable results. |
 | **Phase 16** | Screen: §10 Method (Academic Paper Page) | [ ] Pending | Five-layer architecture SVG diagram, leakage gate flow, data cards, dynamic H1–H4 hypothesis verdicts, printable CSS. |
 | **Phase 17** | Screen: §11 Glossary | [ ] Pending | Formal definitions of all 13 core metrics and concepts from report Appendix C with formulas and visual explanations. |
@@ -45,7 +45,7 @@
 - [x] **Model Lab (§05)**: E1–E10 sortable matrix, bootstrap CIs, ROC vs PR flattery comparison, early vs late drift test, dataset switcher.
 - [x] **Why (§06)**: Global feature ranking, beeswarm plot, dependence plots, permutation importance cross-check.
 - [x] **Drift & Operations (§07)**: PSI table with status badges, score distribution drift, retrain trigger, champion vs challenger gate, rollback.
-- [ ] **Fairness & Risk (§08)**: Segment FPR analysis, -30% evasion test results, privacy & compliance statements.
+- [x] **Fairness & Risk (§08)**: Multi-group FPR segment audit (regions, channels), -30% evasion probe, DPDP/RBI/SR 11-7 compliance matrix, and HITL review rights.
 - [ ] **Batch (§09)**: Drag-and-drop CSV upload, validation report, flagged download with reasons, sample CSV generator.
 - [ ] **Method (§10)**: 5-layer architecture SVG, 3 leakage gates, dynamic hypothesis verdicts (H1-H4), academic references, print stylesheet.
 - [ ] **Glossary (§11)**: Complete definitions of all 13 concepts from report Appendix C with mathematical equations and practical notes.

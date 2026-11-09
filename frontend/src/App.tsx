@@ -12,6 +12,7 @@ import { ThresholdLab } from "./views/ThresholdLab";
 import { ModelLab } from "./views/ModelLab";
 import { WhyExplain } from "./views/WhyExplain";
 import { DriftOperations } from "./views/DriftOperations";
+import { FairnessRisk } from "./views/FairnessRisk";
 
 export const App: React.FC = () => {
   const [activeScreen, setActiveScreen] = useState<ScreenId>("live");
@@ -143,8 +144,12 @@ export const App: React.FC = () => {
         <DriftOperations />
       )}
 
-      {/* Other screens placeholder for Phase 14 - 17 */}
-      {!["live", "case", "briefing", "threshold", "model", "why", "drift"].includes(activeScreen) && (
+      {activeScreen === "fairness" && (
+        <FairnessRisk />
+      )}
+
+      {/* Other screens placeholder for Phase 15 - 17 */}
+      {!["live", "case", "briefing", "threshold", "model", "why", "drift", "fairness"].includes(activeScreen) && (
         <div style={{ padding: "var(--space-8)", backgroundColor: "var(--paper-raised)", border: "1px solid var(--rule)" }}>
           <span className="eyebrow" style={{ color: "var(--ink-faint)" }}>Phase Pipeline</span>
           <h2 style={{ marginTop: 8 }}>Section §{activeScreen.toUpperCase()}</h2>
