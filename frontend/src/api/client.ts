@@ -122,6 +122,23 @@ export async function fetchFairness() {
   return res.json();
 }
 
+export async function uploadBatchCsv(file: File) {
+  const formData = new FormData();
+  formData.append("file", file);
+  const res = await fetch(`${BASE_URL}/score/batch`, {
+    method: "POST",
+    body: formData,
+  });
+  if (!res.ok) {
+    const errorBody = await res.json().catch(() => ({ detail: res.statusText }));
+    throw errorBody;
+  }
+  return res.json();
+}
+
+export const BATCH_SAMPLE_CSV_URL = `${BASE_URL}/score/batch/sample`;
+export const BATCH_DOWNLOAD_FLAGGED_URL = `${BASE_URL}/score/batch/download`;
+
 export async function fetchDatasets() {
   const res = await fetch(`${BASE_URL}/datasets`);
   return res.json();

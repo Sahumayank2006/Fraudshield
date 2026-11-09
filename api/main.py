@@ -227,21 +227,60 @@ async def score_batch(file: UploadFile = File(...)) -> Dict[str, Any]:
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Invalid CSV format: {str(e)}")
 
-    if "amount" not in df_batch.columns or "account_id" not in df_batch.columns:
+    # Validate CSV schema and data types
+    missing_cols = []
+    if "amount" not in df_batch.columns:
+        missing_cols.append("amount")
+    if "account_id" not in df_batch.columns:
+        missing_cols.append("account_id")
+
+    if missing_cols:
         raise HTTPException(
             status_code=422,
-            detail="Batch CSV must contain at least 'account_id' and 'amount' columns.",
+            detail={
+                "error": "SCHEMA_VALIDATION_FAILED",
+                "message": f"Uploaded batch CSV is missing mandatory columns: {', '.join(missing_cols)}.",
+                "required_columns": ["account_id", "amount"],
+                "optional_columns": ["txn_id", "ts", "merchant_id", "merchant_category", "channel", "device_id", "ip_region"],
+                "detected_columns": list(df_batch.columns),
+            },
         )
 
-    # Ensure required columns exist with defaults
+    # Validate non-negative amounts
+    try:
+        df_batch["amount"] = pd.to_numeric(df_batch["amount"], errors="coerce")
+        if df_batch["amount"].isna().any():
+            invalid_rows = int(df_batch["amount"].isna().sum())
+            raise HTTPException(
+                status_code=422,
+                detail=f"Batch contains {invalid_rows} row(s) with invalid or non-numeric amount values.",
+            )
+        if (df_batch["amount"] < 0).any():
+            negative_rows = int((df_batch["amount"] < 0).sum())
+            raise HTTPException(
+                status_code=422,
+                detail=f"Batch contains {negative_rows} row(s) with negative amount values. Amounts must be >= 0.",
+            )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=422, detail=f"Data type validation failed: {str(e)}")
+
+    # Ensure recommended columns exist with realistic defaults
     if "txn_id" not in df_batch.columns:
         df_batch["txn_id"] = [f"TXN_BATCH_{i:06d}" for i in range(len(df_batch))]
     if "ts" not in df_batch.columns:
         df_batch["ts"] = time.time() + np.arange(len(df_batch)) * 10.0
     if "merchant_id" not in df_batch.columns:
         df_batch["merchant_id"] = "MERCH_BATCH"
+    if "merchant_category" not in df_batch.columns:
+        df_batch["merchant_category"] = "retail"
     if "channel" not in df_batch.columns:
         df_batch["channel"] = "online"
+    if "device_id" not in df_batch.columns:
+        df_batch["device_id"] = [f"DEV_BATCH_{i%50:03d}" for i in range(len(df_batch))]
+    if "ip_region" not in df_batch.columns:
+        df_batch["ip_region"] = "IN-MH"
 
     # Batch Feature Extraction
     feat_df = extract_features(df_batch, reset_state=True)
@@ -282,6 +321,21 @@ async def score_batch(file: UploadFile = File(...)) -> Dict[str, Any]:
         decisions.append(dec)
 
         if dec in ("REVIEW", "BLOCK"):
+            # Determine dynamic reason headline
+            reason_text = "Elevated Composite Fraud Risk"
+            if "iso_score" in feat_df.columns and float(feat_df.iloc[i].get("iso_score", 0.0)) > 0.35:
+                reason_text = "Geometric Isolation Anomaly"
+            elif amt > 50000:
+                reason_text = f"High Capital Exposure (₹{amt:,.2f})"
+            elif "txn_count_1h" in feat_df.columns and float(feat_df.iloc[i].get("txn_count_1h", 0)) > 3:
+                reason_text = "Rapid Velocity Burst (>3 txns/hr)"
+            elif "device_novelty" in feat_df.columns and float(feat_df.iloc[i].get("device_novelty", 0)) > 0:
+                reason_text = "Unrecognized Device Fingerprint"
+            elif p >= t2:
+                reason_text = f"High Statistical Fraud Confidence ({p:.1%})"
+            else:
+                reason_text = f"Intermediate Risk Hold ({p:.1%})"
+
             flagged_rows.append({
                 "txn_id": str(df_batch.iloc[i]["txn_id"]),
                 "account_id": str(df_batch.iloc[i]["account_id"]),
@@ -289,6 +343,7 @@ async def score_batch(file: UploadFile = File(...)) -> Dict[str, Any]:
                 "channel": str(df_batch.iloc[i]["channel"]),
                 "fraud_probability": round(p, 4),
                 "decision": dec,
+                "reason": reason_text,
             })
 
     t_end = time.perf_counter()
@@ -310,6 +365,49 @@ async def score_batch(file: UploadFile = File(...)) -> Dict[str, Any]:
         "processing_time_ms": proc_time_ms,
         "flagged_preview": flagged_rows[:100],
     }
+
+
+@app.get("/api/score/batch/sample")
+def download_sample_batch_csv():
+    """Download a realistic sample CSV containing realistic transactions for testing batch scoring."""
+    sample_path = DATA_DIR / "sample_batch.csv"
+    if not sample_path.exists():
+        if streaming_engine.test_records and len(streaming_engine.test_records) >= 50:
+            clean = [r for r in streaming_engine.test_records if r.get("is_fraud", 0) == 0][:45]
+            fraud = [r for r in streaming_engine.test_records if r.get("is_fraud", 0) == 1][:15]
+            combined = clean + fraud
+            rng = np.random.RandomState(42)
+            rng.shuffle(combined)
+            cols = ["txn_id", "ts", "account_id", "merchant_id", "merchant_category", "amount", "channel", "device_id", "ip_region"]
+            df_sample = pd.DataFrame(combined)[[c for c in cols if c in combined[0]]]
+        else:
+            rows = []
+            for i in range(60):
+                is_flagged = (i % 8 == 0)
+                amt = round(float(45000.0 + (i*1337)%52000) if is_flagged else float(15.0 + (i*23)%650), 2)
+                rows.append({
+                    "txn_id": f"TXN_SMP_{i:04d}",
+                    "ts": int(time.time() - (60 - i) * 180),
+                    "account_id": f"ACC_{(i%12):04d}",
+                    "merchant_id": f"MERCH_{(i%6):03d}",
+                    "merchant_category": "electronics" if is_flagged else "grocery",
+                    "amount": amt,
+                    "channel": "online" if is_flagged else ("upi" if i%2==0 else "card_present"),
+                    "device_id": f"DEV_{(i%15):03d}",
+                    "ip_region": "IN-MH" if i%2==0 else "IN-KA",
+                })
+            df_sample = pd.DataFrame(rows)
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
+        df_sample.to_csv(sample_path, index=False)
+
+    with open(sample_path, "r", encoding="utf-8") as f:
+        csv_content = f.read()
+
+    return Response(
+        content=csv_content,
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=fraudshield_sample_transactions.csv"},
+    )
 
 
 @app.get("/api/score/batch/download")

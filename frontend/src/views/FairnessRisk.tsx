@@ -607,3 +607,4 @@ export const FairnessRisk: React.FC = () => {
     </div>
   );
 };
+
