@@ -27,3 +27,4 @@ EXPOSE 8000
 
 # Default launcher: starts API and serves UI
 CMD ["python", "run.py", "demo"]
+

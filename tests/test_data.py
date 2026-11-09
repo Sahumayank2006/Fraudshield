@@ -102,3 +102,4 @@ def test_eda_summary_generation(sample_data, tmp_path):
     assert len(eda["hourly_distribution"]) == 24
     assert "drift_check" in eda
     assert "amount_ks_statistic_fraud" in eda["drift_check"]
+

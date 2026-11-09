@@ -126,3 +126,4 @@ def test_concept_drift_distribution_shift():
     # Two-sample Kolmogorov-Smirnov test on fraud amount distributions
     res = stats.ks_2samp(early_fraud["amount"], late_fraud["amount"])
     assert res.pvalue < 0.05, f"Drift was not statistically significant on KS test (p={res.pvalue:.4f})"
+

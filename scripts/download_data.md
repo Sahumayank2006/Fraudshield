@@ -60,3 +60,4 @@ However, to replicate the academic benchmark experiments from the project report
          paysim.csv
    ```
 3. When FraudShield executes `python run.py train` or `python run.py train-fast`, it automatically checks for the presence of these files, runs the E1–E10 benchmark matrix, generates the corresponding DataCards in `artifacts/datacards.json`, and enables the dataset switcher on the **Model Lab** screen.
+
