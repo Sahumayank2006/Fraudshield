@@ -14,6 +14,7 @@ import { WhyExplain } from "./views/WhyExplain";
 import { DriftOperations } from "./views/DriftOperations";
 import { FairnessRisk } from "./views/FairnessRisk";
 import { BatchScoring } from "./views/BatchScoring";
+import { Methodology } from "./views/Methodology";
 
 export const App: React.FC = () => {
   const [activeScreen, setActiveScreen] = useState<ScreenId>("live");
@@ -153,8 +154,12 @@ export const App: React.FC = () => {
         <BatchScoring />
       )}
 
-      {/* Other screens placeholder for Phase 16 - 17 */}
-      {!["live", "case", "briefing", "threshold", "model", "why", "drift", "fairness", "batch"].includes(activeScreen) && (
+      {activeScreen === "method" && (
+        <Methodology />
+      )}
+
+      {/* Other screens placeholder for Phase 17 */}
+      {!["live", "case", "briefing", "threshold", "model", "why", "drift", "fairness", "batch", "method"].includes(activeScreen) && (
         <div style={{ padding: "var(--space-8)", backgroundColor: "var(--paper-raised)", border: "1px solid var(--rule)" }}>
           <span className="eyebrow" style={{ color: "var(--ink-faint)" }}>Phase Pipeline</span>
           <h2 style={{ marginTop: 8 }}>Section §{activeScreen.toUpperCase()}</h2>

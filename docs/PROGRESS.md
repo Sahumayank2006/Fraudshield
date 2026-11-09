@@ -29,7 +29,7 @@
 | **Phase 13** | Screen: §07 Drift & Operations | [x] Complete | Population Stability Index (PSI) feature table with status badges (Stable, Moderate, Significant), score distribution then-vs-now overlay, weekly performance with 7-day maturation delay, automated drift alert banner, and challenger retrain workflow with side-by-side gate and atomic rollback. |
 | **Phase 14** | Screen: §08 Fairness & Risk | [x] Complete | Multi-group FPR segment audit (10 regions, 4 channels), -30% adversarial amount evasion probe, DPDP Act 2023 / RBI Master Directions / SR 11-7 compliance matrix, and HITL capacity & explanation rights. |
 | **Phase 15** | Screen: §09 Batch | [x] Complete | Drag-and-drop CSV upload, schema & type validation report, batch inference progress indicator, summary KPI ledger, searchable flagged table with reasons, sample CSV generator, and flagged CSV download. |
-| **Phase 16** | Screen: §10 Method (Academic Paper Page) | [ ] Pending | Five-layer architecture SVG diagram, leakage gate flow, data cards, dynamic H1–H4 hypothesis verdicts, printable CSS. |
+| **Phase 16** | Screen: §10 Method (Academic Paper Page) | [x] Complete | Single scrolling paper page, five-layer architecture custom SVG diagram, 3-leakage-gate flow, DataCards, dynamic H1–H4 hypothesis verdicts, honest limitations, formal references, and print stylesheet. |
 | **Phase 17** | Screen: §11 Glossary | [ ] Pending | Formal definitions of all 13 core metrics and concepts from report Appendix C with formulas and visual explanations. |
 | **Phase 18** | Screen: Present Mode & Welcome Tour | [ ] Pending | Full-screen presentation mode, 6-minute sequenced tour, keyboard navigation (`P`, `A`, `Space`), and dismissible first-run tour. |
 | **Final** | Documentation, Verification & Acceptance Review | [ ] Pending | README.md, ARCHITECTURE.md, MODEL_CARD.md, DATA_CARD.md, DEMO_SCRIPT.md, VIVA_QA.md, DEMO_DAY_CHECKLIST.md, and full acceptance audit. |
@@ -47,7 +47,7 @@
 - [x] **Drift & Operations (§07)**: PSI table with status badges, score distribution drift, retrain trigger, champion vs challenger gate, rollback.
 - [x] **Fairness & Risk (§08)**: Multi-group FPR segment audit (regions, channels), -30% evasion probe, DPDP/RBI/SR 11-7 compliance matrix, and HITL review rights.
 - [x] **Batch (§09)**: Drag-and-drop CSV upload, validation report, flagged download with reasons, sample CSV generator.
-- [ ] **Method (§10)**: 5-layer architecture SVG, 3 leakage gates, dynamic hypothesis verdicts (H1-H4), academic references, print stylesheet.
+- [x] **Method (§10)**: 5-layer architecture SVG, 3 leakage gates, dynamic hypothesis verdicts (H1-H4), academic references, print stylesheet.
 - [ ] **Glossary (§11)**: Complete definitions of all 13 concepts from report Appendix C with mathematical equations and practical notes.
 - [ ] **Present Mode**: Fullscreen guided sequence, keyboard shortcuts (`P`, `A`, `Space`, `G`), cheat sheet overlay, first-run tour.
 
