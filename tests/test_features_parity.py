@@ -97,3 +97,4 @@ def test_all_feature_columns_present(sample_transactions):
     feat_df = extract_features(sample_transactions.iloc[:100])
     assert list(feat_df.columns) == FEATURE_COLUMNS
     assert feat_df.isnull().sum().sum() == 0, "Feature matrix contains null values"
+

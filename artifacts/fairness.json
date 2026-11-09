@@ -1,0 +1,123 @@
+{
+  "ip_region": [
+    {
+      "group": "GB-LON",
+      "total": 2381,
+      "legitimate": 2366,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    },
+    {
+      "group": "IN-DL",
+      "total": 1004,
+      "legitimate": 994,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    },
+    {
+      "group": "IN-KA",
+      "total": 554,
+      "legitimate": 546,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    },
+    {
+      "group": "IN-MH",
+      "total": 759,
+      "legitimate": 755,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    },
+    {
+      "group": "IN-TN",
+      "total": 1504,
+      "legitimate": 1491,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    },
+    {
+      "group": "IN-TS",
+      "total": 7140,
+      "legitimate": 7115,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    },
+    {
+      "group": "IN-WB",
+      "total": 1056,
+      "legitimate": 1047,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    },
+    {
+      "group": "SG-SIN",
+      "total": 497,
+      "legitimate": 491,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    },
+    {
+      "group": "US-CA",
+      "total": 2584,
+      "legitimate": 2579,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    },
+    {
+      "group": "US-NY",
+      "total": 521,
+      "legitimate": 516,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    }
+  ],
+  "channel": [
+    {
+      "group": "card_present",
+      "total": 7217,
+      "legitimate": 7217,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    },
+    {
+      "group": "online",
+      "total": 5675,
+      "legitimate": 5650,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    },
+    {
+      "group": "transfer",
+      "total": 1086,
+      "legitimate": 1030,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    },
+    {
+      "group": "upi",
+      "total": 4022,
+      "legitimate": 4003,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "fpr_percentage": "0.000%"
+    }
+  ],
+  "evasion_probe": {
+    "evasion_type": "shrunk_fraud_amount_30pct",
+    "evasion_pr_auc": 0.83245,
+    "evasion_recall_at_threshold": 0.54
+  }
+}

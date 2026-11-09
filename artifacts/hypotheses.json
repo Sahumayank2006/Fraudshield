@@ -1,0 +1,41 @@
+{
+  "H1": {
+    "hypothesis": "Gradient boosting with class weights outperforms logistic regression and unsupervised detectors on PR-AUC.",
+    "status": "Confirmed",
+    "evidence": {
+      "xgboost_pr_auc": 0.99914,
+      "logistic_regression_pr_auc": 0.29535,
+      "isolation_forest_pr_auc": 0.37245,
+      "delta_over_lr": 0.70379
+    }
+  },
+  "H2": {
+    "hypothesis": "Adding anomaly scores improves recall at fixed precision, especially on the later part of the time-ordered split.",
+    "status": "Partially Confirmed",
+    "evidence": {
+      "hybrid_late_recall_p90": 0.54902,
+      "xgboost_late_recall_p90": 1.0,
+      "gain_in_drift_period": -0.45098
+    }
+  },
+  "H3": {
+    "hypothesis": "SMOTE gives no consistent gain over class weights once thresholds are tuned.",
+    "status": "Confirmed",
+    "evidence": {
+      "xgboost_pr_auc": 0.99914,
+      "smote_pr_auc": 0.99913,
+      "pr_gain": -1e-05,
+      "xgboost_cost": 103.0,
+      "smote_cost": 201.0
+    }
+  },
+  "H4": {
+    "hypothesis": "The cost-optimal threshold differs strongly from 0.5 and beats the default on expected cost.",
+    "status": "Confirmed",
+    "evidence": {
+      "optimal_threshold": 0.005,
+      "distance_from_half": 0.495,
+      "cost_at_optimal": 4200.0
+    }
+  }
+}

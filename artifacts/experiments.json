@@ -1,0 +1,402 @@
+{
+  "E1_LR_None": {
+    "model_id": "E1_LR_None",
+    "pr_auc": 0.07093,
+    "pr_auc_ci": {
+      "ci_lower": 0.02855,
+      "median": 0.06873,
+      "ci_upper": 0.1255
+    },
+    "roc_auc": 0.61412,
+    "recall_at_p80": 0.06,
+    "recall_at_p90": 0.06,
+    "f1": 0.01573,
+    "f2": 0.03779,
+    "mcc": 0.02679,
+    "brier_score": 0.38578,
+    "expected_cost_flat": 11416.0,
+    "expected_cost_ci": {
+      "ci_lower": 10268.75,
+      "median": 11422.5,
+      "ci_upper": 12768.3
+    },
+    "expected_cost_amount_weighted": 251772.56,
+    "operating_threshold": 0.5,
+    "latency_median_ms": 2.517,
+    "latency_p95_ms": 3.844,
+    "confusion_matrix": {
+      "tp": 58,
+      "fn": 42,
+      "fp": 7216,
+      "tn": 10684
+    },
+    "early_vs_late": {
+      "early_pr_auc": 0.17465,
+      "late_pr_auc": 0.13009,
+      "pr_auc_delta": -0.04456,
+      "early_recall_p90": 0.16327,
+      "late_recall_p90": 0.11765,
+      "recall_p90_delta": -0.04562
+    }
+  },
+  "E2_LR_Weighted": {
+    "model_id": "E2_LR_Weighted",
+    "pr_auc": 0.29535,
+    "pr_auc_ci": {
+      "ci_lower": 0.20779,
+      "median": 0.29456,
+      "ci_upper": 0.39159
+    },
+    "roc_auc": 0.70291,
+    "recall_at_p80": 0.3,
+    "recall_at_p90": 0.29,
+    "f1": 0.01841,
+    "f2": 0.0444,
+    "mcc": 0.04555,
+    "brier_score": 0.41926,
+    "expected_cost_flat": 10471.0,
+    "expected_cost_ci": {
+      "ci_lower": 9528.725,
+      "median": 10445.5,
+      "ci_upper": 11489.1
+    },
+    "expected_cost_amount_weighted": 102581.02,
+    "operating_threshold": 0.5,
+    "latency_median_ms": 2.706,
+    "latency_p95_ms": 5.107,
+    "confusion_matrix": {
+      "tp": 75,
+      "fn": 25,
+      "fp": 7971,
+      "tn": 9929
+    },
+    "early_vs_late": {
+      "early_pr_auc": 0.35383,
+      "late_pr_auc": 0.30114,
+      "pr_auc_delta": -0.05269,
+      "early_recall_p90": 0.10204,
+      "late_recall_p90": 0.29412,
+      "recall_p90_delta": 0.19208
+    }
+  },
+  "E3_RF_Balanced": {
+    "model_id": "E3_RF_Balanced",
+    "pr_auc": 0.9997,
+    "pr_auc_ci": {
+      "ci_lower": 0.9988,
+      "median": 0.9998,
+      "ci_upper": 1.0
+    },
+    "roc_auc": 1.0,
+    "recall_at_p80": 1.0,
+    "recall_at_p90": 1.0,
+    "f1": 0.92473,
+    "f2": 0.88477,
+    "mcc": 0.927,
+    "brier_score": 0.00086,
+    "expected_cost_flat": 1400.0,
+    "expected_cost_ci": {
+      "ci_lower": 700.0,
+      "median": 1400.0,
+      "ci_upper": 2200.0
+    },
+    "expected_cost_amount_weighted": 913.38,
+    "operating_threshold": 0.5,
+    "latency_median_ms": 77.834,
+    "latency_p95_ms": 112.443,
+    "confusion_matrix": {
+      "tp": 86,
+      "fn": 14,
+      "fp": 0,
+      "tn": 17900
+    },
+    "early_vs_late": {
+      "early_pr_auc": 1.0,
+      "late_pr_auc": 0.99962,
+      "pr_auc_delta": -0.00038,
+      "early_recall_p90": 1.0,
+      "late_recall_p90": 1.0,
+      "recall_p90_delta": 0.0
+    }
+  },
+  "E4_XGBoost": {
+    "model_id": "E4_XGBoost",
+    "pr_auc": 0.99914,
+    "pr_auc_ci": {
+      "ci_lower": 0.99715,
+      "median": 0.99935,
+      "ci_upper": 1.0
+    },
+    "roc_auc": 0.99999,
+    "recall_at_p80": 1.0,
+    "recall_at_p90": 1.0,
+    "f1": 0.9802,
+    "f2": 0.98606,
+    "mcc": 0.98013,
+    "brier_score": 0.00018,
+    "expected_cost_flat": 103.0,
+    "expected_cost_ci": {
+      "ci_lower": 1.0,
+      "median": 102.0,
+      "ci_upper": 306.0
+    },
+    "expected_cost_amount_weighted": 66.65,
+    "operating_threshold": 0.5,
+    "latency_median_ms": 9.33,
+    "latency_p95_ms": 10.769,
+    "confusion_matrix": {
+      "tp": 99,
+      "fn": 1,
+      "fp": 3,
+      "tn": 17897
+    },
+    "early_vs_late": {
+      "early_pr_auc": 0.99959,
+      "late_pr_auc": 0.99962,
+      "pr_auc_delta": 3e-05,
+      "early_recall_p90": 1.0,
+      "late_recall_p90": 1.0,
+      "recall_p90_delta": 0.0
+    }
+  },
+  "E5_XGBoost_SMOTE": {
+    "model_id": "E5_XGBoost_SMOTE",
+    "pr_auc": 0.99913,
+    "pr_auc_ci": {
+      "ci_lower": 0.99697,
+      "median": 0.99927,
+      "ci_upper": 1.0
+    },
+    "roc_auc": 0.99999,
+    "recall_at_p80": 1.0,
+    "recall_at_p90": 1.0,
+    "f1": 0.98492,
+    "f2": 0.98196,
+    "mcc": 0.98485,
+    "brier_score": 0.00013,
+    "expected_cost_flat": 201.0,
+    "expected_cost_ci": {
+      "ci_lower": 0.0,
+      "median": 201.0,
+      "ci_upper": 501.025
+    },
+    "expected_cost_amount_weighted": 171.24,
+    "operating_threshold": 0.5,
+    "latency_median_ms": 8.843,
+    "latency_p95_ms": 9.905,
+    "confusion_matrix": {
+      "tp": 98,
+      "fn": 2,
+      "fp": 1,
+      "tn": 17899
+    },
+    "early_vs_late": {
+      "early_pr_auc": 1.0,
+      "late_pr_auc": 0.99813,
+      "pr_auc_delta": -0.00187,
+      "early_recall_p90": 1.0,
+      "late_recall_p90": 1.0,
+      "recall_p90_delta": 0.0
+    }
+  },
+  "E6_LightGBM": {
+    "model_id": "E6_LightGBM",
+    "pr_auc": 0.99854,
+    "pr_auc_ci": {
+      "ci_lower": 0.99563,
+      "median": 0.99877,
+      "ci_upper": 1.0
+    },
+    "roc_auc": 0.99999,
+    "recall_at_p80": 1.0,
+    "recall_at_p90": 1.0,
+    "f1": 0.97959,
+    "f2": 0.96774,
+    "mcc": 0.97969,
+    "brier_score": 0.00022,
+    "expected_cost_flat": 400.0,
+    "expected_cost_ci": {
+      "ci_lower": 100.0,
+      "median": 400.0,
+      "ci_upper": 800.0
+    },
+    "expected_cost_amount_weighted": 207.46,
+    "operating_threshold": 0.5,
+    "latency_median_ms": 3.433,
+    "latency_p95_ms": 4.626,
+    "confusion_matrix": {
+      "tp": 96,
+      "fn": 4,
+      "fp": 0,
+      "tn": 17900
+    },
+    "early_vs_late": {
+      "early_pr_auc": 0.99959,
+      "late_pr_auc": 0.99746,
+      "pr_auc_delta": -0.00213,
+      "early_recall_p90": 1.0,
+      "late_recall_p90": 1.0,
+      "recall_p90_delta": 0.0
+    }
+  },
+  "E7_IsolationForest": {
+    "model_id": "E7_IsolationForest",
+    "pr_auc": 0.37245,
+    "pr_auc_ci": {
+      "ci_lower": 0.28044,
+      "median": 0.3725,
+      "ci_upper": 0.47006
+    },
+    "roc_auc": 0.8236,
+    "recall_at_p80": 0.34,
+    "recall_at_p90": 0.27,
+    "f1": 0.02201,
+    "f2": 0.05298,
+    "mcc": 0.06515,
+    "brier_score": 0.23685,
+    "expected_cost_flat": 9030.0,
+    "expected_cost_ci": {
+      "ci_lower": 8282.975,
+      "median": 9022.0,
+      "ci_upper": 9754.075
+    },
+    "expected_cost_amount_weighted": 82739.55,
+    "operating_threshold": 0.5,
+    "latency_median_ms": 0.05,
+    "latency_p95_ms": 0.05,
+    "confusion_matrix": {
+      "tp": 86,
+      "fn": 14,
+      "fp": 7630,
+      "tn": 10270
+    },
+    "early_vs_late": {
+      "early_pr_auc": 0.35189,
+      "late_pr_auc": 0.39229,
+      "pr_auc_delta": 0.04041,
+      "early_recall_p90": 0.2449,
+      "late_recall_p90": 0.2549,
+      "recall_p90_delta": 0.01
+    }
+  },
+  "E8_Autoencoder": {
+    "model_id": "E8_Autoencoder",
+    "pr_auc": 0.08916,
+    "pr_auc_ci": {
+      "ci_lower": 0.0393,
+      "median": 0.08849,
+      "ci_upper": 0.14594
+    },
+    "roc_auc": 0.6789,
+    "recall_at_p80": 0.08,
+    "recall_at_p90": 0.08,
+    "f1": 0.07692,
+    "f2": 0.0495,
+    "mcc": 0.19947,
+    "brier_score": 0.01558,
+    "expected_cost_flat": 9600.0,
+    "expected_cost_ci": {
+      "ci_lower": 7800.0,
+      "median": 9600.0,
+      "ci_upper": 11502.5
+    },
+    "expected_cost_amount_weighted": 495622.47,
+    "operating_threshold": 0.5,
+    "latency_median_ms": 0.05,
+    "latency_p95_ms": 0.05,
+    "confusion_matrix": {
+      "tp": 4,
+      "fn": 96,
+      "fp": 0,
+      "tn": 17900
+    },
+    "early_vs_late": {
+      "early_pr_auc": 0.11965,
+      "late_pr_auc": 0.08579,
+      "pr_auc_delta": -0.03387,
+      "early_recall_p90": 0.10204,
+      "late_recall_p90": 0.07843,
+      "recall_p90_delta": -0.02361
+    }
+  },
+  "E9_Hybrid": {
+    "model_id": "E9_Hybrid",
+    "pr_auc": 0.93,
+    "pr_auc_ci": {
+      "ci_lower": 0.89245,
+      "median": 0.93129,
+      "ci_upper": 0.95897
+    },
+    "roc_auc": 0.99977,
+    "recall_at_p80": 1.0,
+    "recall_at_p90": 0.58,
+    "f1": 0.73418,
+    "f2": 0.63319,
+    "mcc": 0.76069,
+    "brier_score": 0.00479,
+    "expected_cost_flat": 4200.0,
+    "expected_cost_ci": {
+      "ci_lower": 3000.0,
+      "median": 4200.0,
+      "ci_upper": 5400.0
+    },
+    "expected_cost_amount_weighted": 7971.0,
+    "operating_threshold": 0.005,
+    "latency_median_ms": 24.903,
+    "latency_p95_ms": 54.365,
+    "confusion_matrix": {
+      "tp": 58,
+      "fn": 42,
+      "fp": 0,
+      "tn": 17900
+    },
+    "early_vs_late": {
+      "early_pr_auc": 0.93428,
+      "late_pr_auc": 0.92607,
+      "pr_auc_delta": -0.00821,
+      "early_recall_p90": 0.61224,
+      "late_recall_p90": 0.54902,
+      "recall_p90_delta": -0.06323
+    }
+  },
+  "E10_Stacked": {
+    "model_id": "E10_Stacked",
+    "pr_auc": 0.98963,
+    "pr_auc_ci": {
+      "ci_lower": 0.9668,
+      "median": 0.99023,
+      "ci_upper": 1.0
+    },
+    "roc_auc": 0.99791,
+    "recall_at_p80": 0.99,
+    "recall_at_p90": 0.99,
+    "f1": 0.9802,
+    "f2": 0.98606,
+    "mcc": 0.98013,
+    "brier_score": 0.00014,
+    "expected_cost_flat": 103.0,
+    "expected_cost_ci": {
+      "ci_lower": 1.0,
+      "median": 102.0,
+      "ci_upper": 306.0
+    },
+    "expected_cost_amount_weighted": 66.65,
+    "operating_threshold": 0.005,
+    "latency_median_ms": 0.365,
+    "latency_p95_ms": 1.592,
+    "confusion_matrix": {
+      "tp": 99,
+      "fn": 1,
+      "fp": 3,
+      "tn": 17897
+    },
+    "early_vs_late": {
+      "early_pr_auc": 0.97986,
+      "late_pr_auc": 0.99887,
+      "pr_auc_delta": 0.01901,
+      "early_recall_p90": 0.97959,
+      "late_recall_p90": 1.0,
+      "recall_p90_delta": 0.02041
+    }
+  }
+}

@@ -16,7 +16,7 @@
 | **Phase 0** | Comprehensive Analysis & Foundations | [x] Complete | Analysed PDF (all 28 pages) and MD; wrote `ANALYSIS.md`, `DECISIONS.md`, and `PROGRESS.md`. Initialised git repo and created initial commit. |
 | **Phase 1** | Scaffold, Data Simulator & Loaders | [x] Complete | Scaffolded config, requirements, run.py, LedgerSim simulator with 5 typologies and concept drift, ULB/PaySim loaders, DataCards, EDA artifact, and 9 passing tests. |
 | **Phase 2** | Feature Engineering & Online/Batch Parity | [x] Complete | Built FeatureStore and extract_features with strict past-only rolling velocity/behavioural features; 17 passing tests proving future-invariance and 100% batch-online parity. |
-| **Phase 3** | Models, E1–E10 Experiments, Hybrid & Evaluation | [ ] Pending | Implement models E1–E10, out-of-fold anomaly fusion, calibration, threshold policy, bootstrap CIs, train-fast verification, and training pause gate. |
+| **Phase 3** | Models, E1–E10 Experiments, Hybrid & Evaluation | [x] Complete | Built E1–E10 models, imbalance resampling, K-fold OOF anomaly fusion, isotonic calibration, dual-threshold policy, 1000 bootstrap CIs, H1–H4 tests, and 25 passing test suite. |
 | **Phase 4** | Explainability, Monitoring & Operations | [ ] Pending | Implement TreeSHAP explanations, reason code dictionary, PSI drift tracking, and challenger retrain/rollback. |
 | **Phase 5** | FastAPI Backend, SQLite Store & SSE Engine | [ ] Pending | Build all 17+ REST endpoints, SQLite case repository, SSE replay stream, scripted attack bursts, and API test suite. |
 | **Phase 6** | Frontend Foundation & Design System | [ ] Pending | Establish tokens.css, locally vendored Fraunces/IBM Plex fonts, paper light theme, layout shell, navigation, and SVG chart primitives. |

@@ -1,0 +1,10 @@
+{
+  "t1_review": 0.005,
+  "t2_block": 0.0591,
+  "max_reviews_per_1000": 6.0,
+  "target_block_precision": 0.9,
+  "cost_mode": "amount_weighted",
+  "expected_val_cost": 23320.77,
+  "review_queue_rate": 0.0,
+  "version": "1.0.0"
+}

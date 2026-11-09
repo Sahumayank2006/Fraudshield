@@ -184,17 +184,20 @@ class FeatureStore:
             cutoff_24h = ts - WINDOW_24H
             cutoff_7d = ts - WINDOW_7D
 
-            for past_ts, past_amt, past_merch, past_dev in acc.history_deque:
-                if past_ts >= cutoff_7d:
-                    count_7d += 1
-                    devices_7d.add(past_dev)
-                    if past_ts >= cutoff_24h:
-                        count_24h += 1
-                        sum_24h += past_amt
-                        merchants_24h.add(past_merch)
-                        if past_ts >= cutoff_1h:
-                            count_1h += 1
-                            sum_1h += past_amt
+            # Iterate backwards in time: newest transactions first.
+            # Stop immediately when an event is older than 7 days!
+            for past_ts, past_amt, past_merch, past_dev in reversed(acc.history_deque):
+                if past_ts < cutoff_7d:
+                    break
+                count_7d += 1
+                devices_7d.add(past_dev)
+                if past_ts >= cutoff_24h:
+                    count_24h += 1
+                    sum_24h += past_amt
+                    merchants_24h.add(past_merch)
+                    if past_ts >= cutoff_1h:
+                        count_1h += 1
+                        sum_1h += past_amt
 
             new_merch_flag = 1.0 if (merch_id and merch_id not in acc.seen_merchants) else 0.0
             new_payee_flag = (

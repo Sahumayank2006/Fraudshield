@@ -179,3 +179,4 @@ def test_smote_pipeline_isolation(base_transactions):
     assert len(preds) == original_val_len
     assert len(y_val) == original_val_len
     assert int(y_val.sum()) == original_val_pos, "Validation target distribution was corrupted by SMOTE"
+
