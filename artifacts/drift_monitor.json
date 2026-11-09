@@ -1,0 +1,1080 @@
+{
+  "generated_at": "2026-11-09T15:30:45.706594+00:00",
+  "summary": {
+    "overall_health": "RETRAIN_RECOMMENDED",
+    "score_psi": 0.0111,
+    "score_drift_status": "STABLE",
+    "features_monitored": 26,
+    "significant_drifting_features": 10,
+    "triggers": [
+      "10 features demonstrate severe drift (top: hour, time_since_last_txn, time_since_account_open)."
+    ],
+    "recommended_action": "Initiate challenger retraining pipeline on latest mature window."
+  },
+  "score_drift": {
+    "psi": 0.0111,
+    "status": "STABLE",
+    "ks_statistic": 0.006,
+    "ks_pvalue": 1.0,
+    "ref_mean": 0.00177,
+    "curr_mean": 0.00019,
+    "ref_median": 0.0,
+    "curr_median": 0.0,
+    "ref_p95": 0.0,
+    "curr_p95": 0.0,
+    "histogram": [
+      {
+        "bin_start": 0.0,
+        "bin_end": 0.05,
+        "bin_mid": 0.025,
+        "ref_density": 19.91,
+        "curr_density": 19.97
+      },
+      {
+        "bin_start": 0.05,
+        "bin_end": 0.1,
+        "bin_mid": 0.075,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.1,
+        "bin_end": 0.15,
+        "bin_mid": 0.125,
+        "ref_density": 0.06,
+        "curr_density": 0.03
+      },
+      {
+        "bin_start": 0.15,
+        "bin_end": 0.2,
+        "bin_mid": 0.175,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.2,
+        "bin_end": 0.25,
+        "bin_mid": 0.225,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.25,
+        "bin_end": 0.3,
+        "bin_mid": 0.275,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.3,
+        "bin_end": 0.35,
+        "bin_mid": 0.325,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.35,
+        "bin_end": 0.4,
+        "bin_mid": 0.375,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.4,
+        "bin_end": 0.45,
+        "bin_mid": 0.425,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.45,
+        "bin_end": 0.5,
+        "bin_mid": 0.475,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.5,
+        "bin_end": 0.55,
+        "bin_mid": 0.525,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.55,
+        "bin_end": 0.6,
+        "bin_mid": 0.575,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.6,
+        "bin_end": 0.65,
+        "bin_mid": 0.625,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.65,
+        "bin_end": 0.7,
+        "bin_mid": 0.675,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.7,
+        "bin_end": 0.75,
+        "bin_mid": 0.725,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.75,
+        "bin_end": 0.8,
+        "bin_mid": 0.775,
+        "ref_density": 0.01,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.8,
+        "bin_end": 0.85,
+        "bin_mid": 0.825,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.85,
+        "bin_end": 0.9,
+        "bin_mid": 0.875,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.9,
+        "bin_end": 0.95,
+        "bin_mid": 0.925,
+        "ref_density": 0.0,
+        "curr_density": 0.0
+      },
+      {
+        "bin_start": 0.95,
+        "bin_end": 1.0,
+        "bin_mid": 0.975,
+        "ref_density": 0.02,
+        "curr_density": 0.0
+      }
+    ]
+  },
+  "feature_psi_table": [
+    {
+      "feature": "hour",
+      "label": "Hour",
+      "psi": 8.7694,
+      "status": "SIGNIFICANT",
+      "ref_mean": 15.3097,
+      "curr_mean": 23.0,
+      "mean_delta": 7.6903,
+      "bin_edges": [
+        0.0,
+        7.0,
+        10.0,
+        12.0,
+        14.0,
+        15.0,
+        17.0,
+        20.0,
+        23.0
+      ],
+      "ref_pct": [
+        0.096,
+        0.0799,
+        0.0921,
+        0.1159,
+        0.063,
+        0.1166,
+        0.1272,
+        0.3093
+      ],
+      "curr_pct": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "feature": "time_since_last_txn",
+      "label": "Time Since Last Txn",
+      "psi": 7.3024,
+      "status": "SIGNIFICANT",
+      "ref_mean": 126873.8605,
+      "curr_mean": 58369.591,
+      "mean_delta": -68504.2695,
+      "bin_edges": [
+        0.0,
+        0.01,
+        0.56,
+        34.17,
+        95.306,
+        207.275,
+        490.496,
+        1429.64,
+        6361.156,
+        82667.056,
+        2590841.36
+      ],
+      "ref_pct": [
+        0.0844,
+        0.1154,
+        0.1001,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "curr_pct": [
+        0.3649,
+        0.4863,
+        0.1175,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0006,
+        0.0307
+      ]
+    },
+    {
+      "feature": "time_since_account_open",
+      "label": "Time Since Account Open",
+      "psi": 2.5725,
+      "status": "SIGNIFICANT",
+      "ref_mean": 1524214.3203,
+      "curr_mean": 2470278.9516,
+      "mean_delta": 946064.6313,
+      "bin_edges": [
+        0.0,
+        209608.376,
+        561159.824,
+        915929.201,
+        1256173.414,
+        1604195.49,
+        1954077.03,
+        2301000.419,
+        2560715.544,
+        2591645.955,
+        2591883.69
+      ],
+      "ref_pct": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "curr_pct": [
+        0.0268,
+        0.0031,
+        0.0037,
+        0.0044,
+        0.0059,
+        0.0081,
+        0.0181,
+        0.1107,
+        0.3525,
+        0.4668
+      ]
+    },
+    {
+      "feature": "txn_count_1h",
+      "label": "Txn Count 1H",
+      "psi": 2.1484,
+      "status": "SIGNIFICANT",
+      "ref_mean": 273.9009,
+      "curr_mean": 5362.5919,
+      "mean_delta": 5088.691,
+      "bin_edges": [
+        0.0,
+        1.0,
+        4.0,
+        9.0,
+        17.0,
+        35.0,
+        52.0,
+        548.0,
+        5888.0
+      ],
+      "ref_pct": [
+        0.233,
+        0.1482,
+        0.1037,
+        0.1069,
+        0.1053,
+        0.1018,
+        0.1011,
+        0.1
+      ],
+      "curr_pct": [
+        0.0312,
+        0.0351,
+        0.0253,
+        0.022,
+        0.0313,
+        0.0201,
+        0.1663,
+        0.6687
+      ]
+    },
+    {
+      "feature": "amount_sum_1h",
+      "label": "Amount Sum 1H",
+      "psi": 2.1104,
+      "status": "SIGNIFICANT",
+      "ref_mean": 21564.0968,
+      "curr_mean": 439254.0103,
+      "mean_delta": 417689.9135,
+      "bin_edges": [
+        0.0,
+        43.787,
+        149.146,
+        335.075,
+        759.23,
+        1864.208,
+        2970.06,
+        38018.678,
+        506434.03
+      ],
+      "ref_pct": [
+        0.3,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "curr_pct": [
+        0.0467,
+        0.0238,
+        0.0209,
+        0.0237,
+        0.0369,
+        0.0237,
+        0.1464,
+        0.6779
+      ]
+    },
+    {
+      "feature": "txn_count_24h",
+      "label": "Txn Count 24H",
+      "psi": 1.6433,
+      "status": "SIGNIFICANT",
+      "ref_mean": 518.4647,
+      "curr_mean": 5660.2315,
+      "mean_delta": 5141.7668,
+      "bin_edges": [
+        0.0,
+        1.0,
+        6.0,
+        23.0,
+        63.0,
+        142.0,
+        255.0,
+        611.0,
+        642.0,
+        869.1,
+        6650.0
+      ],
+      "ref_pct": [
+        0.0985,
+        0.099,
+        0.0992,
+        0.1015,
+        0.1007,
+        0.1006,
+        0.098,
+        0.1001,
+        0.1023,
+        0.1
+      ],
+      "curr_pct": [
+        0.0306,
+        0.0472,
+        0.0453,
+        0.0494,
+        0.0491,
+        0.0408,
+        0.0721,
+        0.0052,
+        0.03,
+        0.6304
+      ]
+    },
+    {
+      "feature": "distinct_merchants_24h",
+      "label": "Distinct Merchants 24H",
+      "psi": 1.5561,
+      "status": "SIGNIFICANT",
+      "ref_mean": 93.2131,
+      "curr_mean": 311.8209,
+      "mean_delta": 218.6077,
+      "bin_edges": [
+        0.0,
+        1.0,
+        5.0,
+        15.0,
+        32.0,
+        56.0,
+        87.0,
+        145.0,
+        158.0,
+        192.0,
+        488.0
+      ],
+      "ref_pct": [
+        0.0985,
+        0.0968,
+        0.102,
+        0.1007,
+        0.0996,
+        0.0993,
+        0.0958,
+        0.1023,
+        0.1051,
+        0.1
+      ],
+      "curr_pct": [
+        0.0306,
+        0.0455,
+        0.0495,
+        0.0462,
+        0.0469,
+        0.0466,
+        0.0612,
+        0.0148,
+        0.0259,
+        0.6328
+      ]
+    },
+    {
+      "feature": "amount_sum_24h",
+      "label": "Amount Sum 24H",
+      "psi": 1.5107,
+      "status": "SIGNIFICANT",
+      "ref_mean": 38275.6889,
+      "curr_mean": 456765.3368,
+      "mean_delta": 418489.6479,
+      "bin_edges": [
+        0.0,
+        7.18,
+        231.216,
+        896.351,
+        3135.7,
+        6022.365,
+        18708.732,
+        33848.06,
+        47360.384,
+        73961.079,
+        552785.51
+      ],
+      "ref_pct": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "curr_pct": [
+        0.0314,
+        0.0498,
+        0.0387,
+        0.0548,
+        0.0265,
+        0.0539,
+        0.0468,
+        0.0286,
+        0.0351,
+        0.6343
+      ]
+    },
+    {
+      "feature": "txn_count_7d",
+      "label": "Txn Count 7D",
+      "psi": 0.8101,
+      "status": "SIGNIFICANT",
+      "ref_mean": 1836.9029,
+      "curr_mean": 7137.7559,
+      "mean_delta": 5300.853,
+      "bin_edges": [
+        0.0,
+        3.0,
+        28.0,
+        109.7,
+        308.0,
+        671.0,
+        1392.0,
+        2182.3,
+        4391.0,
+        4582.0,
+        10527.0
+      ],
+      "ref_pct": [
+        0.0915,
+        0.108,
+        0.1005,
+        0.0999,
+        0.1001,
+        0.1,
+        0.1,
+        0.0993,
+        0.1004,
+        0.1003
+      ],
+      "curr_pct": [
+        0.0527,
+        0.0696,
+        0.0697,
+        0.0675,
+        0.0626,
+        0.0729,
+        0.0542,
+        0.1052,
+        0.0106,
+        0.4352
+      ]
+    },
+    {
+      "feature": "distinct_devices_7d",
+      "label": "Distinct Devices 7D",
+      "psi": 0.6617,
+      "status": "SIGNIFICANT",
+      "ref_mean": 116.6043,
+      "curr_mean": 450.8425,
+      "mean_delta": 334.2382,
+      "bin_edges": [
+        0.0,
+        1.0,
+        3.0,
+        8.0,
+        20.0,
+        41.0,
+        85.0,
+        144.0,
+        266.0,
+        312.0,
+        660.0
+      ],
+      "ref_pct": [
+        0.0543,
+        0.1405,
+        0.1017,
+        0.1004,
+        0.1021,
+        0.1008,
+        0.0999,
+        0.0992,
+        0.1005,
+        0.1005
+      ],
+      "curr_pct": [
+        0.0269,
+        0.0954,
+        0.0686,
+        0.0724,
+        0.0633,
+        0.0559,
+        0.0757,
+        0.0837,
+        0.0319,
+        0.426
+      ]
+    },
+    {
+      "feature": "category_rarity_by_account",
+      "label": "Category Rarity By Account",
+      "psi": 0.2104,
+      "status": "MODERATE",
+      "ref_mean": 0.803,
+      "curr_mean": 0.8095,
+      "mean_delta": 0.0065,
+      "bin_edges": [
+        0.0,
+        0.7373,
+        0.7507,
+        0.7764,
+        0.7869,
+        0.7989,
+        0.8035,
+        0.81,
+        0.8571,
+        0.9816,
+        1.0
+      ],
+      "ref_pct": [
+        0.1,
+        0.0999,
+        0.1,
+        0.1001,
+        0.0997,
+        0.1002,
+        0.1001,
+        0.0983,
+        0.1017,
+        0.1
+      ],
+      "curr_pct": [
+        0.0619,
+        0.1172,
+        0.0509,
+        0.1027,
+        0.2414,
+        0.0551,
+        0.0949,
+        0.0887,
+        0.1028,
+        0.0845
+      ]
+    },
+    {
+      "feature": "amount_zscore_by_account",
+      "label": "Amount Zscore By Account",
+      "psi": 0.0498,
+      "status": "STABLE",
+      "ref_mean": 0.0932,
+      "curr_mean": 0.0589,
+      "mean_delta": -0.0343,
+      "bin_edges": [
+        -47.7745,
+        -0.4586,
+        -0.1209,
+        -0.0946,
+        -0.0732,
+        -0.0601,
+        -0.0443,
+        -0.0184,
+        0.0,
+        0.171,
+        50.0
+      ],
+      "ref_pct": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.0431,
+        0.157,
+        0.1
+      ],
+      "curr_pct": [
+        0.0713,
+        0.0779,
+        0.1126,
+        0.1139,
+        0.1278,
+        0.1245,
+        0.1189,
+        0.0496,
+        0.1342,
+        0.0693
+      ]
+    },
+    {
+      "feature": "session_anomaly",
+      "label": "Session Anomaly",
+      "psi": 0.0264,
+      "status": "STABLE",
+      "ref_mean": 0.0061,
+      "curr_mean": -0.0043,
+      "mean_delta": -0.0104,
+      "bin_edges": [
+        -1.0012,
+        -0.8429,
+        -0.7318,
+        -0.6083,
+        -0.4662,
+        -0.2935,
+        -0.0856,
+        0.1815,
+        0.5632,
+        1.2153,
+        22.4161
+      ],
+      "ref_pct": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "curr_pct": [
+        0.0596,
+        0.1123,
+        0.1104,
+        0.1094,
+        0.1086,
+        0.1055,
+        0.1008,
+        0.0999,
+        0.1033,
+        0.0902
+      ]
+    },
+    {
+      "feature": "amount_to_balance_ratio",
+      "label": "Amount To Balance Ratio",
+      "psi": 0.0075,
+      "status": "STABLE",
+      "ref_mean": 0.2344,
+      "curr_mean": 0.2447,
+      "mean_delta": 0.0103,
+      "bin_edges": [
+        0.0,
+        0.0022,
+        0.005,
+        0.0103,
+        0.0254,
+        0.1287,
+        0.2975,
+        0.3834,
+        0.4627,
+        0.5988,
+        0.9933
+      ],
+      "ref_pct": [
+        0.0999,
+        0.0999,
+        0.1001,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "curr_pct": [
+        0.0932,
+        0.1104,
+        0.101,
+        0.0859,
+        0.0847,
+        0.1062,
+        0.1027,
+        0.1042,
+        0.1062,
+        0.1055
+      ]
+    },
+    {
+      "feature": "log_amount",
+      "label": "Log Amount",
+      "psi": 0.0003,
+      "status": "STABLE",
+      "ref_mean": 3.4917,
+      "curr_mean": 3.4968,
+      "mean_delta": 0.0052,
+      "bin_edges": [
+        0.7031,
+        2.3878,
+        2.6803,
+        2.9232,
+        3.1789,
+        3.4072,
+        3.6373,
+        3.867,
+        4.2556,
+        4.6579,
+        11.1998
+      ],
+      "ref_pct": [
+        0.0999,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "curr_pct": [
+        0.098,
+        0.0992,
+        0.0992,
+        0.1029,
+        0.0978,
+        0.1009,
+        0.0983,
+        0.1029,
+        0.1014,
+        0.0993
+      ]
+    },
+    {
+      "feature": "errorBalanceOrig",
+      "label": "Errorbalanceorig",
+      "psi": 0.0001,
+      "status": "STABLE",
+      "ref_mean": 0.0,
+      "curr_mean": -0.0,
+      "mean_delta": -0.0,
+      "bin_edges": [
+        -0.02,
+        0.0,
+        0.02
+      ],
+      "ref_pct": [
+        0.002,
+        0.998
+      ],
+      "curr_pct": [
+        0.0016,
+        0.9984
+      ]
+    },
+    {
+      "feature": "drains_account",
+      "label": "Drains Account",
+      "psi": 0.0,
+      "status": "STABLE",
+      "ref_mean": 0.0089,
+      "curr_mean": 0.0083,
+      "mean_delta": -0.0005,
+      "bin_edges": [
+        0.0,
+        1.0
+      ],
+      "ref_pct": [
+        1.0
+      ],
+      "curr_pct": [
+        1.0
+      ]
+    },
+    {
+      "feature": "is_night",
+      "label": "Is Night",
+      "psi": 0.0,
+      "status": "STABLE",
+      "ref_mean": 0.0798,
+      "curr_mean": 0.0,
+      "mean_delta": -0.0798,
+      "bin_edges": [
+        0.0,
+        1.0
+      ],
+      "ref_pct": [
+        1.0
+      ],
+      "curr_pct": [
+        1.0
+      ]
+    },
+    {
+      "feature": "new_merchant_flag",
+      "label": "New Merchant Flag",
+      "psi": 0.0,
+      "status": "STABLE",
+      "ref_mean": 0.2178,
+      "curr_mean": 0.1407,
+      "mean_delta": -0.0771,
+      "bin_edges": [
+        0.0,
+        1.0
+      ],
+      "ref_pct": [
+        1.0
+      ],
+      "curr_pct": [
+        1.0
+      ]
+    },
+    {
+      "feature": "new_payee_flag",
+      "label": "New Payee Flag",
+      "psi": 0.0,
+      "status": "STABLE",
+      "ref_mean": 0.1017,
+      "curr_mean": 0.0951,
+      "mean_delta": -0.0066,
+      "bin_edges": [
+        0.0,
+        1.0
+      ],
+      "ref_pct": [
+        1.0
+      ],
+      "curr_pct": [
+        1.0
+      ]
+    },
+    {
+      "feature": "region_mismatch",
+      "label": "Region Mismatch",
+      "psi": 0.0,
+      "status": "STABLE",
+      "ref_mean": 0.0432,
+      "curr_mean": 0.0425,
+      "mean_delta": -0.0007,
+      "bin_edges": [
+        0.0,
+        1.0
+      ],
+      "ref_pct": [
+        1.0
+      ],
+      "curr_pct": [
+        1.0
+      ]
+    },
+    {
+      "feature": "device_novelty",
+      "label": "Device Novelty",
+      "psi": 0.0,
+      "status": "STABLE",
+      "ref_mean": 0.1016,
+      "curr_mean": 0.0831,
+      "mean_delta": -0.0186,
+      "bin_edges": [
+        0.0,
+        1.0
+      ],
+      "ref_pct": [
+        1.0
+      ],
+      "curr_pct": [
+        1.0
+      ]
+    },
+    {
+      "feature": "pwd_reset_last_24h",
+      "label": "Pwd Reset Last 24H",
+      "psi": 0.0,
+      "status": "STABLE",
+      "ref_mean": 0.3738,
+      "curr_mean": 0.7155,
+      "mean_delta": 0.3417,
+      "bin_edges": [
+        0.0,
+        1.0
+      ],
+      "ref_pct": [
+        1.0
+      ],
+      "curr_pct": [
+        1.0
+      ]
+    },
+    {
+      "feature": "errorBalanceDest",
+      "label": "Errorbalancedest",
+      "psi": 0.0,
+      "status": "STABLE",
+      "ref_mean": 0.0,
+      "curr_mean": 0.0,
+      "mean_delta": 0.0,
+      "bin_edges": [
+        -1.0,
+        1.0
+      ],
+      "ref_pct": [
+        1.0
+      ],
+      "curr_pct": [
+        1.0
+      ]
+    },
+    {
+      "feature": "iso_score",
+      "label": "Iso Score",
+      "psi": 0.0,
+      "status": "STABLE",
+      "ref_mean": 0.0,
+      "curr_mean": 0.0,
+      "mean_delta": 0.0,
+      "bin_edges": [
+        -1.0,
+        1.0
+      ],
+      "ref_pct": [
+        1.0
+      ],
+      "curr_pct": [
+        1.0
+      ]
+    },
+    {
+      "feature": "ae_error",
+      "label": "Ae Error",
+      "psi": 0.0,
+      "status": "STABLE",
+      "ref_mean": 0.0,
+      "curr_mean": 0.0,
+      "mean_delta": 0.0,
+      "bin_edges": [
+        -1.0,
+        1.0
+      ],
+      "ref_pct": [
+        1.0
+      ],
+      "curr_pct": [
+        1.0
+      ]
+    }
+  ],
+  "weekly_performance": [
+    {
+      "week_index": 1,
+      "week_label": "Week 1",
+      "start_time": 2591987,
+      "end_time": 2591989,
+      "total_transactions": 2000,
+      "is_mature": false,
+      "status": "Pending 7d Maturation",
+      "fraud_count": 8,
+      "fraud_rate": 0.004,
+      "flagged_count": 3,
+      "precision": null,
+      "recall": null,
+      "pr_auc": null,
+      "f1": null
+    }
+  ],
+  "model_registry": {
+    "active_version": "v1.0-champion",
+    "active_trained_at": "2026-11-09T15:30:45.687058+00:00",
+    "has_rollback": false,
+    "rollback_version": null,
+    "latest_comparison": null,
+    "history": []
+  }
+}
