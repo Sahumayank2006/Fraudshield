@@ -26,7 +26,7 @@
 | **Phase 10** | Screen: §04 Threshold Lab | [x] Complete | Mirrored legitimate vs fraud score density plot with dual draggable handles (t1, t2), live confusion matrix, precision/recall/F2/MCC readouts, flat vs amount-weighted cost model, snap-to-optimal button, capacity check, and cost-vs-threshold small multiple curve. |
 | **Phase 11** | Screen: §05 Model Lab | [x] Complete | Sortable E1–E10 systematic experiment matrix with 95% bootstrap CIs, diagnostic tabs for PR, ROC (with pedagogical majority flattery note), reliability calibration, concept drift (early vs late), ablation, evasion probe, and multi-dataset switcher. |
 | **Phase 12** | Screen: §06 Why (Explainability) | [x] Complete | Global feature ranking bar chart (mean |SHAP|), hand-crafted SVG beeswarm plot (2,000+ holdout transactions with density jitter), partial dependence plot picker for top 6 features, permutation importance cross-check table, and academic causality caution. |
-| **Phase 13** | Screen: §07 Drift & Operations | [ ] Pending | PSI feature table, score drift overlay, weekly PR tracker, retrain challenger workflow with side-by-side gate & rollback. |
+| **Phase 13** | Screen: §07 Drift & Operations | [x] Complete | Population Stability Index (PSI) feature table with status badges (Stable, Moderate, Significant), score distribution then-vs-now overlay, weekly performance with 7-day maturation delay, automated drift alert banner, and challenger retrain workflow with side-by-side gate and atomic rollback. |
 | **Phase 14** | Screen: §08 Fairness & Risk | [ ] Pending | Multi-group FPR segment audit, -30% evasion probe, DPDP/RBI governance statement, human-in-the-loop review policy. |
 | **Phase 15** | Screen: §09 Batch | [ ] Pending | CSV drag-and-drop, schema validation, batch scoring progress, flagged rows table with reason codes, downloadable results. |
 | **Phase 16** | Screen: §10 Method (Academic Paper Page) | [ ] Pending | Five-layer architecture SVG diagram, leakage gate flow, data cards, dynamic H1–H4 hypothesis verdicts, printable CSS. |
@@ -44,7 +44,7 @@
 - [x] **Threshold Lab (§04)**: Draggable $t_1, t_2$ handles, mirrored density plot, live cost model (flat vs amount-weighted), snap button.
 - [x] **Model Lab (§05)**: E1–E10 sortable matrix, bootstrap CIs, ROC vs PR flattery comparison, early vs late drift test, dataset switcher.
 - [x] **Why (§06)**: Global feature ranking, beeswarm plot, dependence plots, permutation importance cross-check.
-- [ ] **Drift & Operations (§07)**: PSI table with status badges, score distribution drift, retrain trigger, champion vs challenger gate, rollback.
+- [x] **Drift & Operations (§07)**: PSI table with status badges, score distribution drift, retrain trigger, champion vs challenger gate, rollback.
 - [ ] **Fairness & Risk (§08)**: Segment FPR analysis, -30% evasion test results, privacy & compliance statements.
 - [ ] **Batch (§09)**: Drag-and-drop CSV upload, validation report, flagged download with reasons, sample CSV generator.
 - [ ] **Method (§10)**: 5-layer architecture SVG, 3 leakage gates, dynamic hypothesis verdicts (H1-H4), academic references, print stylesheet.
