@@ -7,6 +7,7 @@ import { fetchHealth, fetchOverview, fetchCurves, triggerAttack, controlStream }
 import { SignalBlock, SignalReview, SignalApprove } from "./components/common/Icons";
 import { LiveDesk } from "./views/LiveDesk";
 import { CaseFile } from "./views/CaseFile";
+import { Briefing } from "./views/Briefing";
 
 export const App: React.FC = () => {
   const [activeScreen, setActiveScreen] = useState<ScreenId>("live");
@@ -119,88 +120,7 @@ export const App: React.FC = () => {
       )}
 
       {activeScreen === "briefing" && (
-        <div>
-          {/* Screen Title & Editorial Deck */}
-          <div style={{ marginBottom: "var(--space-6)", borderBottom: "1px solid var(--rule)", paddingBottom: "var(--space-4)" }}>
-            <div style={{ display: "flex", alignItems: "baseline", gap: "var(--space-3)" }}>
-              <span className="eyebrow" style={{ color: "var(--block)" }}>
-                §01 Operational Briefing
-              </span>
-              <span style={{ fontSize: 12, color: "var(--ink-faint)", fontFamily: "var(--font-mono)" }}>
-                Active Model: E9 Hybrid Champion
-              </span>
-            </div>
-            <h1 style={{ marginTop: "var(--space-2)" }}>
-              The Fraud Desk — Executive & Operations Briefing
-            </h1>
-            <p style={{ fontSize: 14, color: "var(--ink-soft)", marginTop: "var(--space-2)", maxWidth: 900 }}>
-              Production payment protection summary. Evaluates transactions through an unsupervised
-              isolation & autoencoder branch fused into class-weighted gradient boosting, calibrated for real-money loss prevention.
-            </p>
-          </div>
-
-          {/* Decision Signal Encoding Legend */}
-          <div
-            style={{
-              display: "flex",
-              gap: "var(--space-6)",
-              padding: "var(--space-3) var(--space-4)",
-              backgroundColor: "var(--paper-raised)",
-              border: "1px solid var(--rule)",
-              marginBottom: "var(--space-6)",
-              alignItems: "center",
-            }}
-          >
-            <span className="eyebrow">Decision Tiers:</span>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
-              <SignalBlock size={13} />
-              <span style={{ fontWeight: 600, color: "var(--block)" }}>BLOCK</span> (t2 &ge; {healthData?.t2_block?.toFixed(3) || "0.059"})
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
-              <SignalReview size={13} />
-              <span style={{ fontWeight: 600, color: "var(--review)" }}>REVIEW</span> (t1 &ge; {healthData?.t1_review?.toFixed(3) || "0.005"})
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}>
-              <SignalApprove size={13} />
-              <span style={{ fontWeight: 600, color: "var(--approve)" }}>APPROVE</span> (&lt; t1)
-            </div>
-          </div>
-
-          {/* Two-Column Asymmetric Layout for Foundation Charts */}
-          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "var(--space-8)" }}>
-            {/* Left Column: Hand-Built SVG Line Chart */}
-            <div>
-              <SvgLineChart
-                title="Champion Model Precision-Recall Curve (E9 Hybrid)"
-                finding="Maintains 90% precision up to 58.0% recall, outperforming baseline models under concept drift."
-                series={[
-                  {
-                    name: "E9 Hybrid (OOF + Anomaly)",
-                    color: "var(--block)",
-                    points: championPrCurve.map((pt: any) => ({ x: pt.recall || pt.x, y: pt.precision || pt.y })),
-                    strokeWidth: 2.2,
-                  },
-                ]}
-              />
-              <div className="marginalia">
-                Note: The PR curve reflects honest holdout test performance on the 70/15/15 chronological split. ROC-AUC is
-                intentionally superseded as the primary metric because extreme 0.65% class imbalance causes false flattery.
-              </div>
-            </div>
-
-            {/* Right Column: Hand-Built SVG SHAP Waterfall Chart */}
-            <div>
-              <SvgWaterfall
-                steps={sampleWaterfall}
-                title="Local TreeSHAP Waterfall (Sample Transaction)"
-                finding="Stepwise attribution demonstrates how high transaction scale and isolation anomaly pushed log-odds past the block threshold."
-              />
-              <div className="marginalia">
-                Causality Caution: SHAP values explain statistical associations learned by the boosted tree ensemble; they do not represent real-world physical causality.
-              </div>
-            </div>
-          </div>
-        </div>
+        <Briefing onNavigateScreen={(screen) => setActiveScreen(screen as ScreenId)} />
       )}
 
       {/* Other screens placeholder for Phase 10 - 17 */}

@@ -9,11 +9,19 @@ export interface LineSeries {
   strokeWidth?: number;
 }
 
+export interface OperatingPoint {
+  x: number;
+  y: number;
+  label: string;
+  color?: string;
+}
+
 interface SvgLineChartProps {
   title: string;
   finding?: string;
   source?: string;
   series: LineSeries[];
+  operatingPoints?: OperatingPoint[];
   width?: number;
   height?: number;
   xLabel?: string;
@@ -27,6 +35,7 @@ export const SvgLineChart: React.FC<SvgLineChartProps> = ({
   finding,
   source,
   series,
+  operatingPoints = [],
   width = 640,
   height = 320,
   xLabel = "Recall",
@@ -167,6 +176,49 @@ export const SvgLineChart: React.FC<SvgLineChartProps> = ({
                 </g>
               ))}
             </g>
+
+            {/* Operating Points */}
+            {operatingPoints.map((op, idx) => {
+              const cx = xScale(op.x);
+              const cy = yScale(op.y);
+              const opColor = op.color || "var(--ink)";
+              return (
+                <g key={`op-${idx}`}>
+                  <line
+                    x1={cx}
+                    y1={cy}
+                    x2={cx}
+                    y2={innerHeight}
+                    stroke={opColor}
+                    strokeWidth="1"
+                    strokeDasharray="2,2"
+                    opacity={0.6}
+                  />
+                  <circle cx={cx} cy={cy} r="5" fill={opColor} stroke="var(--paper)" strokeWidth="2" />
+                  <rect
+                    x={cx - 35}
+                    y={Math.max(4, cy - 22)}
+                    width="70"
+                    height="16"
+                    fill="var(--paper-raised)"
+                    stroke={opColor}
+                    strokeWidth="1"
+                    rx="1"
+                  />
+                  <text
+                    x={cx}
+                    y={Math.max(4, cy - 22) + 11}
+                    textAnchor="middle"
+                    fontSize="9.5"
+                    fontFamily="var(--font-mono)"
+                    fontWeight="600"
+                    fill={opColor}
+                  >
+                    {op.label}
+                  </text>
+                </g>
+              );
+            })}
 
             {/* Interactive Overlay for Hover */}
             <rect

@@ -875,3 +875,4 @@ export const CaseFile: React.FC<CaseFileProps> = ({ initialCaseId, onSelectCase 
     </div>
   );
 };
+
