@@ -6,6 +6,11 @@ interface LayoutProps {
   activeScreen: ScreenId;
   onSelectScreen: (id: ScreenId) => void;
   openCasesCount?: number;
+  onEnterPresentMode?: () => void;
+  onToggleShortcuts?: () => void;
+  latencyMs?: number;
+  isStreamLive?: boolean;
+  modelVersion?: string;
   children: React.ReactNode;
 }
 
@@ -13,6 +18,11 @@ export const Layout: React.FC<LayoutProps> = ({
   activeScreen,
   onSelectScreen,
   openCasesCount = 0,
+  onEnterPresentMode,
+  onToggleShortcuts,
+  latencyMs,
+  isStreamLive,
+  modelVersion,
   children,
 }) => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -34,8 +44,11 @@ export const Layout: React.FC<LayoutProps> = ({
   };
 
   const handleEnterPresentMode = () => {
-    // Will be fully wired in Present Mode phase
-    window.dispatchEvent(new CustomEvent("enter_present_mode"));
+    if (onEnterPresentMode) {
+      onEnterPresentMode();
+    } else {
+      window.dispatchEvent(new CustomEvent("enter_present_mode"));
+    }
   };
 
   return (
@@ -45,6 +58,10 @@ export const Layout: React.FC<LayoutProps> = ({
         theme={theme}
         onToggleTheme={handleToggleTheme}
         onEnterPresentMode={handleEnterPresentMode}
+        onToggleShortcuts={onToggleShortcuts}
+        latencyMs={latencyMs}
+        isStreamLive={isStreamLive}
+        modelVersion={modelVersion}
       />
 
       {/* Main Split: Left Rail + Workspace */}

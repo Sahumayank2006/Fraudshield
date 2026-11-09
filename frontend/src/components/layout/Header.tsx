@@ -5,6 +5,7 @@ interface HeaderProps {
   theme: "light" | "dark";
   onToggleTheme: () => void;
   onEnterPresentMode: () => void;
+  onToggleShortcuts?: () => void;
   modelVersion?: string;
   latencyMs?: number;
   isStreamLive?: boolean;
@@ -14,6 +15,7 @@ export const Header: React.FC<HeaderProps> = ({
   theme,
   onToggleTheme,
   onEnterPresentMode,
+  onToggleShortcuts,
   modelVersion = "v1.0-champion",
   latencyMs = 3.2,
   isStreamLive = true,
@@ -103,6 +105,26 @@ export const Header: React.FC<HeaderProps> = ({
         >
           {theme === "light" ? "Night Desk" : "Day Desk"}
         </button>
+
+        {/* Keyboard Shortcuts Button */}
+        {onToggleShortcuts && (
+          <button
+            onClick={onToggleShortcuts}
+            style={{
+              background: "none",
+              border: "1px solid var(--rule)",
+              color: "var(--ink-soft)",
+              padding: "4px 8px",
+              fontSize: 11,
+              fontFamily: "var(--font-mono)",
+              cursor: "pointer",
+              borderRadius: "var(--border-radius)",
+            }}
+            title="Toggle Keyboard Shortcuts Cheat Sheet (?)"
+          >
+            [?] Shortcuts
+          </button>
+        )}
 
         {/* Present Mode Button */}
         <button

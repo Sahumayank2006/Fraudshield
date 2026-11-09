@@ -31,7 +31,7 @@
 | **Phase 15** | Screen: §09 Batch | [x] Complete | Drag-and-drop CSV upload, schema & type validation report, batch inference progress indicator, summary KPI ledger, searchable flagged table with reasons, sample CSV generator, and flagged CSV download. |
 | **Phase 16** | Screen: §10 Method (Academic Paper Page) | [x] Complete | Single scrolling paper page, five-layer architecture custom SVG diagram, 3-leakage-gate flow, DataCards, dynamic H1–H4 hypothesis verdicts, honest limitations, formal references, and print stylesheet. |
 | **Phase 17** | Screen: §11 Glossary | [x] Complete | Complete formal definitions of all 16 academic terms from report Appendix C with mathematical equations, operational implementation context, category filtering, search lookup, and expandable detail cards. |
-| **Phase 18** | Screen: Present Mode & Welcome Tour | [ ] Pending | Full-screen presentation mode, 6-minute sequenced tour, keyboard navigation (`P`, `A`, `Space`), and dismissible first-run tour. |
+| **Phase 18** | Screen: Present Mode & Welcome Tour | [x] Complete | Fullscreen guided presentation mode [P], 7-step sequenced 6-minute tour with evaluators talk track, keyboard controls (P, A, Space, G jumps, Esc), shortcuts cheatsheet overlay [?], and dismissible first-run welcome tour. |
 | **Final** | Documentation, Verification & Acceptance Review | [ ] Pending | README.md, ARCHITECTURE.md, MODEL_CARD.md, DATA_CARD.md, DEMO_SCRIPT.md, VIVA_QA.md, DEMO_DAY_CHECKLIST.md, and full acceptance audit. |
 
 ---
@@ -49,5 +49,5 @@
 - [x] **Batch (§09)**: Drag-and-drop CSV upload, validation report, flagged download with reasons, sample CSV generator.
 - [x] **Method (§10)**: 5-layer architecture SVG, 3 leakage gates, dynamic hypothesis verdicts (H1-H4), academic references, print stylesheet.
 - [x] **Glossary (§11)**: Complete definitions of all 16 concepts from report Appendix C with mathematical equations and practical notes.
-- [ ] **Present Mode**: Fullscreen guided sequence, keyboard shortcuts (`P`, `A`, `Space`, `G`), cheat sheet overlay, first-run tour.
+- [x] **Present Mode**: Fullscreen guided sequence, keyboard shortcuts (`P`, `A`, `Space`, `G`), cheat sheet overlay, first-run tour.
 

@@ -16,6 +16,9 @@ import { FairnessRisk } from "./views/FairnessRisk";
 import { BatchScoring } from "./views/BatchScoring";
 import { Methodology } from "./views/Methodology";
 import { Glossary } from "./views/Glossary";
+import { PresentModeModal } from "./components/presentation/PresentModeModal";
+import { ShortcutsOverlay } from "./components/common/ShortcutsOverlay";
+import { WelcomeTour } from "./components/common/WelcomeTour";
 
 export const App: React.FC = () => {
   const [activeScreen, setActiveScreen] = useState<ScreenId>("live");
@@ -24,6 +27,9 @@ export const App: React.FC = () => {
   const [overviewData, setOverviewData] = useState<any>(null);
   const [curvesData, setCurvesData] = useState<any>(null);
   const [attackToast, setAttackToast] = useState<string | null>(null);
+  const [presentModeOpen, setPresentModeOpen] = useState<boolean>(false);
+  const [shortcutsOpen, setShortcutsOpen] = useState<boolean>(false);
+  const gSequenceRef = React.useRef<boolean>(false);
 
   // Fetch initial telemetry
   useEffect(() => {
@@ -32,30 +38,92 @@ export const App: React.FC = () => {
     fetchCurves().then(setCurvesData).catch(() => {});
   }, []);
 
+  const handleTriggerAttackBurst = (typology: string = "card_testing") => {
+    triggerAttack(typology, 15).then(() => {
+      setAttackToast(`⚡ Scripted attack burst injected: ${typology} (15 micro-transactions)`);
+      setTimeout(() => setAttackToast(null), 4000);
+    });
+  };
+
   // Global Keyboard Shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
         return;
       }
+
+      // Escape closes modals
+      if (e.key === "Escape") {
+        setPresentModeOpen(false);
+        setShortcutsOpen(false);
+        return;
+      }
+
+      // Help Overlay (?)
+      if (e.key === "?") {
+        e.preventDefault();
+        setShortcutsOpen((prev) => !prev);
+        return;
+      }
+
+      // Presentation Mode (P)
       if (e.key === "p" || e.key === "P") {
+        if (!presentModeOpen) {
+          e.preventDefault();
+          setPresentModeOpen(true);
+        }
+        return;
+      }
+
+      // Attack Injection (A)
+      if (!presentModeOpen && (e.key === "a" || e.key === "A")) {
         e.preventDefault();
-        alert("Presentation mode shortcut [P] triggered. (Full Present Mode is scheduled for Phase 18)");
-      } else if (activeScreen !== "live" && (e.key === "a" || e.key === "A")) {
-        e.preventDefault();
-        triggerAttack("card_testing", 15).then(() => {
-          setAttackToast("⚡ Scripted attack burst injected: card_testing (15 micro-transactions)");
-          setTimeout(() => setAttackToast(null), 4000);
-        });
-      } else if (activeScreen !== "live" && e.code === "Space") {
+        handleTriggerAttackBurst("card_testing");
+        return;
+      }
+
+      // Play/Pause Stream (Space)
+      if (!presentModeOpen && e.code === "Space") {
         e.preventDefault();
         controlStream("pause");
+        return;
+      }
+
+      // Sequential G Jumps
+      if (e.key === "g" || e.key === "G") {
+        if (gSequenceRef.current) {
+          // G + G -> Glossary
+          setActiveScreen("glossary");
+          gSequenceRef.current = false;
+        } else {
+          gSequenceRef.current = true;
+          setTimeout(() => {
+            gSequenceRef.current = false;
+          }, 1500);
+        }
+        return;
+      }
+
+      if (gSequenceRef.current) {
+        gSequenceRef.current = false;
+        switch (e.key) {
+          case "1": setActiveScreen("briefing"); break;
+          case "2": setActiveScreen("live"); break;
+          case "3": setActiveScreen("case"); break;
+          case "4": setActiveScreen("threshold"); break;
+          case "5": setActiveScreen("model"); break;
+          case "6": setActiveScreen("why"); break;
+          case "7": setActiveScreen("drift"); break;
+          case "8": setActiveScreen("fairness"); break;
+          case "9": setActiveScreen("batch"); break;
+          case "0": setActiveScreen("method"); break;
+        }
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeScreen]);
+  }, [activeScreen, presentModeOpen]);
 
   // Extract PR curve coordinates for chart primitive preview
   const championPrCurve = curvesData?.champion_e9?.pr_curve || [
@@ -84,6 +152,11 @@ export const App: React.FC = () => {
       activeScreen={activeScreen}
       onSelectScreen={setActiveScreen}
       openCasesCount={overviewData?.session?.open_cases_count || 15}
+      onEnterPresentMode={() => setPresentModeOpen(true)}
+      onToggleShortcuts={() => setShortcutsOpen(true)}
+      latencyMs={overviewData?.headline?.median_latency_ms || 3.2}
+      isStreamLive={true}
+      modelVersion={healthData?.model_version || "v1.0-champion"}
     >
       {/* Scripted Attack Toast Banner (when triggered outside Live Desk) */}
       {attackToast && (
@@ -163,31 +236,25 @@ export const App: React.FC = () => {
         <Glossary />
       )}
 
-      {/* Other screens placeholder for Phase 18 */}
-      {!["live", "case", "briefing", "threshold", "model", "why", "drift", "fairness", "batch", "method", "glossary"].includes(activeScreen) && (
-        <div style={{ padding: "var(--space-8)", backgroundColor: "var(--paper-raised)", border: "1px solid var(--rule)" }}>
-          <span className="eyebrow" style={{ color: "var(--ink-faint)" }}>Phase Pipeline</span>
-          <h2 style={{ marginTop: 8 }}>Section §{activeScreen.toUpperCase()}</h2>
-          <p style={{ marginTop: 8, fontSize: 14, color: "var(--ink-soft)" }}>
-            This screen is scheduled for development in sequential order per the Phase Stop-and-Check protocol.
-          </p>
-          <button
-            onClick={() => setActiveScreen("live")}
-            style={{
-              marginTop: 16,
-              backgroundColor: "var(--ink)",
-              color: "var(--paper)",
-              border: "none",
-              padding: "6px 12px",
-              fontFamily: "var(--font-mono)",
-              fontSize: 12,
-              cursor: "pointer",
-            }}
-          >
-            &larr; Switch to §02 Live Desk
-          </button>
-        </div>
-      )}
+      {/* Presentation Mode Fullscreen Tour Overlay */}
+      <PresentModeModal
+        isOpen={presentModeOpen}
+        onClose={() => setPresentModeOpen(false)}
+        onNavigateScreen={(scr) => setActiveScreen(scr)}
+        onTriggerAttack={handleTriggerAttackBurst}
+      />
+
+      {/* Keyboard Shortcuts Overlay */}
+      <ShortcutsOverlay
+        isOpen={shortcutsOpen}
+        onClose={() => setShortcutsOpen(false)}
+        onNavigateScreen={(scr) => setActiveScreen(scr)}
+        onTriggerAttack={() => handleTriggerAttackBurst("card_testing")}
+        onTogglePresentMode={() => setPresentModeOpen((prev) => !prev)}
+      />
+
+      {/* First-Run Welcome Popover */}
+      <WelcomeTour onStartPresentation={() => setPresentModeOpen(true)} />
     </Layout>
   );
 };
