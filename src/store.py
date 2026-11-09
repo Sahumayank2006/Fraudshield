@@ -15,6 +15,8 @@ import sqlite3
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
 
+import numpy as np
+
 from config import DATA_DIR
 
 logger = logging.getLogger("fraudshield.store")

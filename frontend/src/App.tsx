@@ -6,6 +6,7 @@ import { SvgWaterfall } from "./components/charts/SvgWaterfall";
 import { fetchHealth, fetchOverview, fetchCurves, triggerAttack, controlStream } from "./api/client";
 import { SignalBlock, SignalReview, SignalApprove } from "./components/common/Icons";
 import { LiveDesk } from "./views/LiveDesk";
+import { CaseFile } from "./views/CaseFile";
 
 export const App: React.FC = () => {
   const [activeScreen, setActiveScreen] = useState<ScreenId>("live");
@@ -111,29 +112,10 @@ export const App: React.FC = () => {
       )}
 
       {activeScreen === "case" && (
-        <div style={{ padding: "var(--space-6)", backgroundColor: "var(--paper-raised)", border: "1px solid var(--rule)" }}>
-          <div className="eyebrow" style={{ color: "var(--review)", marginBottom: 8 }}>§03 Case File (Scheduled for Phase 8)</div>
-          <h2>Investigating Transaction: {selectedCaseId || "CASE-0001"}</h2>
-          <p style={{ marginTop: 8, fontSize: 14, color: "var(--ink-soft)" }}>
-            Phase 8 will deliver the full Case File screen: 20-event chronological account timeline, local TreeSHAP waterfall,
-            nearest historical neighbor fraud fingerprints, and one-click analyst actions (Confirm, Dismiss, Escalate).
-          </p>
-          <button
-            onClick={() => setActiveScreen("live")}
-            style={{
-              marginTop: 16,
-              backgroundColor: "var(--ink)",
-              color: "var(--paper)",
-              border: "none",
-              padding: "6px 12px",
-              fontFamily: "var(--font-mono)",
-              fontSize: 12,
-              cursor: "pointer",
-            }}
-          >
-            &larr; Return to §02 Live Desk
-          </button>
-        </div>
+        <CaseFile
+          initialCaseId={selectedCaseId}
+          onSelectCase={(caseId) => setSelectedCaseId(caseId)}
+        />
       )}
 
       {activeScreen === "briefing" && (

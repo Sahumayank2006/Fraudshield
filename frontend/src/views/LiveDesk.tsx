@@ -867,3 +867,4 @@ export const LiveDesk: React.FC<LiveDeskProps> = ({ onOpenCaseFile }) => {
     </div>
   );
 };
+

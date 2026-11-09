@@ -21,7 +21,7 @@
 | **Phase 5** | FastAPI Backend, SQLite Store & SSE Engine | [x] Complete | Built all 21 REST endpoints, SQLite case/audit store, SSE live replay stream, scripted attack bursts (card_testing, ato, mule_chain), and 15 passing API tests (50 total). |
 | **Phase 6** | Frontend Foundation & Design System | [x] Complete | Built tokens.css design system, Fraunces/IBM Plex typography, paper/night themes, 12-col layout shell, §01-§11 left rail, hand-crafted SVG line & waterfall charts, and bundled SPA. |
 | **Phase 7** | Screen: §02 Live Desk | [x] Complete | Real-time streaming ledger table, probability gauge, speed controls (0.5x–50x), scripted attack burst controls with containment telemetry, and drawer preview. |
-| **Phase 8** | Screen: §03 Case File | [ ] Pending | Transaction details ledger, probability gauge, SHAP waterfall, account history strip, similar cases, and SQLite action buttons. |
+| **Phase 8** | Screen: §03 Case File | [x] Complete | Full transaction dossier form ledger, dual-threshold score gauge with 95% CI, local TreeSHAP waterfall SVG, dynamic reason codes, 20-event account history timeline, top-3 similar historical cases, and persistent SQLite disposition actions (Confirm, Dismiss, Escalate). |
 | **Phase 9** | Screen: §01 Briefing | [ ] Pending | Editorial headline, headline KPI ledger, champion PR curve, rules-engine baseline comparison, and marginal notes. |
 | **Phase 10** | Screen: §04 Threshold Lab | [ ] Pending | Interactive dual-handle threshold slider, score distribution density, live confusion matrix, cost curve, snap-to-optimal. |
 | **Phase 11** | Screen: §05 Model Lab | [ ] Pending | E1–E10 experiment table with CIs, PR vs ROC pedagogical panel, early/late drift tabs, calibration curves, and dataset selector. |
@@ -39,7 +39,7 @@
 ## Detailed Screen Checklist
 
 - [x] **Live Desk (§02)**: Real-time SSE stream, speed controls (1x-50x), attack burst simulator, transaction drawer trigger.
-- [ ] **Case File (§03)**: Form-like transaction record, SHAP waterfall, plain-English reasons, account history, persistent actions.
+- [x] **Case File (§03)**: Form-like transaction record, SHAP waterfall, plain-English reasons, account history, persistent actions.
 - [ ] **Briefing (§01)**: Dynamic editorial summary, headline metrics, PR curve with operating points, rule baseline comparison.
 - [ ] **Threshold Lab (§04)**: Draggable $t_1, t_2$ handles, mirrored density plot, live cost model (flat vs amount-weighted), snap button.
 - [ ] **Model Lab (§05)**: E1–E10 sortable matrix, bootstrap CIs, ROC vs PR flattery comparison, early vs late drift test, dataset switcher.

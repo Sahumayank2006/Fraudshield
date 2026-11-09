@@ -78,3 +78,46 @@ export const IconCross: React.FC<IconProps> = ({ size = 14, color = "currentColo
   </svg>
 );
 
+export const IconShieldAlert: React.FC<IconProps> = ({ size = 14, color = "currentColor" }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <path d="M8 1L2 3.5V7.5C2 11.5 5 14.5 8 15C11 14.5 14 11.5 14 7.5V3.5L8 1Z" stroke={color} strokeWidth="1.4" />
+    <line x1="8" y1="5.5" x2="8" y2="9.5" stroke={color} strokeWidth="1.4" strokeLinecap="square" />
+    <circle cx="8" cy="11.5" r="0.75" fill={color} />
+  </svg>
+);
+
+export const IconUser: React.FC<IconProps> = ({ size = 14, color = "currentColor" }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <circle cx="8" cy="5" r="3" stroke={color} strokeWidth="1.4" />
+    <path d="M2.5 14C2.5 11 5 9.5 8 9.5C11 9.5 13.5 11 13.5 14" stroke={color} strokeWidth="1.4" />
+  </svg>
+);
+
+export const IconChevronLeft: React.FC<IconProps> = ({ size = 14, color = "currentColor" }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <polyline points="10 3 5 8 10 13" stroke={color} strokeWidth="1.5" strokeLinecap="square" />
+  </svg>
+);
+
+export const IconChevronRight: React.FC<IconProps> = ({ size = 14, color = "currentColor" }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <polyline points="6 3 11 8 6 13" stroke={color} strokeWidth="1.5" strokeLinecap="square" />
+  </svg>
+);
+
+export const IconHistory: React.FC<IconProps> = ({ size = 14, color = "currentColor" }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <circle cx="8" cy="8" r="6" stroke={color} strokeWidth="1.4" />
+    <polyline points="8 4.5 8 8 10.5 9.5" stroke={color} strokeWidth="1.4" strokeLinecap="square" />
+  </svg>
+);
+
+export const IconFileText: React.FC<IconProps> = ({ size = 14, color = "currentColor" }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <path d="M3 2H10L13 5V14H3V2Z" stroke={color} strokeWidth="1.4" />
+    <line x1="5.5" y1="8" x2="10.5" y2="8" stroke={color} strokeWidth="1.2" />
+    <line x1="5.5" y1="10.5" x2="9.5" y2="10.5" stroke={color} strokeWidth="1.2" />
+  </svg>
+);
+
+
