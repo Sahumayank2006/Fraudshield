@@ -9,6 +9,7 @@ import { LiveDesk } from "./views/LiveDesk";
 import { CaseFile } from "./views/CaseFile";
 import { Briefing } from "./views/Briefing";
 import { ThresholdLab } from "./views/ThresholdLab";
+import { ModelLab } from "./views/ModelLab";
 
 export const App: React.FC = () => {
   const [activeScreen, setActiveScreen] = useState<ScreenId>("live");
@@ -128,8 +129,12 @@ export const App: React.FC = () => {
         <ThresholdLab />
       )}
 
-      {/* Other screens placeholder for Phase 11 - 17 */}
-      {!["live", "case", "briefing", "threshold"].includes(activeScreen) && (
+      {activeScreen === "model" && (
+        <ModelLab />
+      )}
+
+      {/* Other screens placeholder for Phase 12 - 17 */}
+      {!["live", "case", "briefing", "threshold", "model"].includes(activeScreen) && (
         <div style={{ padding: "var(--space-8)", backgroundColor: "var(--paper-raised)", border: "1px solid var(--rule)" }}>
           <span className="eyebrow" style={{ color: "var(--ink-faint)" }}>Phase Pipeline</span>
           <h2 style={{ marginTop: 8 }}>Section §{activeScreen.toUpperCase()}</h2>
