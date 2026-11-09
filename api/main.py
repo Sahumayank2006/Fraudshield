@@ -624,3 +624,14 @@ def get_hypothesis_verdicts() -> Dict[str, Any]:
         raise HTTPException(status_code=404, detail="hypotheses.json not found.")
     with open(hyp_file, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+# ==============================================================================
+# 9. Static File Serving for Built Frontend
+# ==============================================================================
+FRONTEND_DIST = Path(__file__).resolve().parent.parent / "frontend" / "dist"
+if FRONTEND_DIST.exists():
+    from fastapi.staticfiles import StaticFiles
+
+    app.mount("/", StaticFiles(directory=str(FRONTEND_DIST), html=True), name="static")
+

@@ -19,7 +19,7 @@
 | **Phase 3** | Models, E1–E10 Experiments, Hybrid & Evaluation | [x] Complete | Built E1–E10 models, imbalance resampling, K-fold OOF anomaly fusion, isotonic calibration, dual-threshold policy, 1000 bootstrap CIs, H1–H4 tests, and 25 passing test suite. |
 | **Phase 4** | Explainability, Monitoring & Operations | [x] Complete | Built TreeSHAP explainer, dynamic reason codes, global beeswarm/dependence artifacts, PSI drift monitoring with 7d label maturation, and challenger retrain/rollback. |
 | **Phase 5** | FastAPI Backend, SQLite Store & SSE Engine | [x] Complete | Built all 21 REST endpoints, SQLite case/audit store, SSE live replay stream, scripted attack bursts (card_testing, ato, mule_chain), and 15 passing API tests (50 total). |
-| **Phase 6** | Frontend Foundation & Design System | [ ] Pending | Establish tokens.css, locally vendored Fraunces/IBM Plex fonts, paper light theme, layout shell, navigation, and SVG chart primitives. |
+| **Phase 6** | Frontend Foundation & Design System | [x] Complete | Built tokens.css design system, Fraunces/IBM Plex typography, paper/night themes, 12-col layout shell, §01-§11 left rail, hand-crafted SVG line & waterfall charts, and bundled SPA. |
 | **Phase 7** | Screen: §02 Live Desk | [ ] Pending | Streaming ledger table, volume strip, live counters, latency meter, play/pause/speed controls, attack trigger button. |
 | **Phase 8** | Screen: §03 Case File | [ ] Pending | Transaction details ledger, probability gauge, SHAP waterfall, account history strip, similar cases, and SQLite action buttons. |
 | **Phase 9** | Screen: §01 Briefing | [ ] Pending | Editorial headline, headline KPI ledger, champion PR curve, rules-engine baseline comparison, and marginal notes. |
