@@ -424,3 +424,4 @@ export const Glossary: React.FC = () => {
     </div>
   );
 };
+

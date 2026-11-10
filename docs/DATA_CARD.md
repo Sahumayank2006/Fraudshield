@@ -112,3 +112,4 @@ In the final $25\%$ of the timeline (simulating Days 23 through 30), LedgerSim i
 - **DPDP Act (India, 2023)**: Sections 4–9 mandate data minimization. All personal identity attributes are excluded from model tensors. Primary keys are salted hashes.
 - **Data Retention Policy**: FeatureStore in-memory rolling deques automatically discard entity history older than 7 days upon inactivity.
 - **Research Distribution**: LedgerSim datasets are released under the MIT Open Data License for reproducible academic benchmarking.
+

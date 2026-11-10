@@ -161,3 +161,4 @@ $$\max |X_{\text{batch}} - X_{\text{online}}| = 0.00000000000$$
 | **Database** | SQLite 3 (`data/fraudshield.db`) | PostgreSQL 16 + Redis 7 Cluster |
 | **Scoring Latency** | Median: 3.2 ms \| p95: 8.4 ms | Median: 1.8 ms \| p95: 4.5 ms |
 | **Throughput Capacity** | 2,500 transactions/second | 12,000 transactions/second |
+

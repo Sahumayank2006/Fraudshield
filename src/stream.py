@@ -118,15 +118,16 @@ class ReplayStreamEngine:
         feat_series = default_feature_store.compute_and_update(raw_txn)
         feat_df = pd.DataFrame([feat_series])
 
-        # 2. Model Inference
+        # 2. Model Inference & Dynamic Anomaly Scoring
         if self.model is not None and self.feature_names:
-            eval_cols = [c for c in self.feature_names if c in feat_df.columns]
-            if len(eval_cols) < len(self.feature_names):
+            if hasattr(self.model, "transform_features"):
+                feat_df = self.model.transform_features(feat_df)
+            else:
                 for missing in set(self.feature_names) - set(feat_df.columns):
                     feat_df[missing] = 0.0
 
             prob = float(self.model.predict_proba(feat_df[self.feature_names])[:, 1][0])
-            iso_val = float(feat_df.get("iso_score", [0.0])[0]) if "iso_score" in feat_df else 0.5
+            iso_val = float(feat_df["iso_score"].iloc[0]) if "iso_score" in feat_df.columns else 0.5
         else:
             prob = 0.02
             iso_val = 0.1
@@ -244,19 +245,27 @@ class ReplayStreamEngine:
             test_acc = f"ACC_ATTACK_{np.random.randint(1000, 9999)}"
             test_dev = f"DEV_BOT_{np.random.randint(10, 99)}"
             for i in range(count):
+                amt = round(float(np.random.uniform(15.0, 85.0)), 2)
                 burst.append({
                     "txn_id": f"TXN_ATK_CT_{int(base_time)}_{i:02d}",
                     "ts": base_time + (i * 2.5),
                     "account_id": test_acc,
                     "merchant_id": f"MERCH_DIGITAL_{10 + (i % 6)}",
                     "merchant_category": "digital_services",
-                    "amount": round(float(np.random.uniform(15.0, 85.0)), 2),
+                    "amount": amt,
                     "channel": "online",
                     "device_id": test_dev,
-                    "device_is_new": True,
-                    "ip_region": "IN-MH",
-                    "orig_balance": 12000.0,
+                    "device_is_new": 1,
+                    "ip_region": "US-NY",
+                    "region_mismatch": 1,
+                    "oldbalance": 1500.0,
+                    "newbalance": max(0.0, 1500.0 - amt),
+                    "orig_balance": 1500.0,
                     "dest_balance": 500.0,
+                    "session_seconds": 1.2,
+                    "hour": 2,
+                    "is_night": 1,
+                    "pwd_reset_last_24h": 0,
                     "pwd_reset_recent": False,
                     "session_risk_score": 0.88,
                     "is_fraud": 1,
@@ -276,10 +285,15 @@ class ReplayStreamEngine:
                 "amount": 94500.0,
                 "channel": "transfer",
                 "device_id": "DEV_UNSEEN_ATTACKER_99",
-                "device_is_new": True,
+                "device_is_new": 1,
                 "ip_region": "US-NY",
+                "region_mismatch": 1,
+                "oldbalance": 100000.0,
+                "newbalance": 5500.0,
                 "orig_balance": 100000.0,
-                "dest_balance": 1500.0,
+                "dest_balance": 5500.0,
+                "session_seconds": 14.0,
+                "pwd_reset_last_24h": 1,
                 "pwd_reset_recent": True,
                 "session_risk_score": 0.95,
                 "is_fraud": 1,
@@ -291,19 +305,25 @@ class ReplayStreamEngine:
             # Mule account pass-through: Rapid consecutive transfers draining credit
             mule_acc = f"ACC_MULE_{np.random.randint(1000, 9999)}"
             for i in range(min(count, 8)):
+                amt = round(float(np.random.uniform(45000.0, 78000.0)), 2)
                 burst.append({
                     "txn_id": f"TXN_ATK_MULE_{int(base_time)}_{i:02d}",
                     "ts": base_time + (i * 12.0),
                     "account_id": mule_acc,
                     "merchant_id": f"MERCH_TRANSFER_P2P_{i}",
                     "merchant_category": "digital_services",
-                    "amount": round(float(np.random.uniform(45000.0, 78000.0)), 2),
+                    "amount": amt,
                     "channel": "upi" if i % 2 == 0 else "transfer",
                     "device_id": f"DEV_MULE_{i}",
-                    "device_is_new": True,
+                    "device_is_new": 1,
                     "ip_region": "IN-WB",
+                    "region_mismatch": 1,
+                    "oldbalance": 80000.0,
+                    "newbalance": max(0.0, 80000.0 - amt),
                     "orig_balance": 80000.0,
                     "dest_balance": 100.0,
+                    "session_seconds": 22.0,
+                    "pwd_reset_last_24h": 0,
                     "pwd_reset_recent": False,
                     "session_risk_score": 0.82,
                     "is_fraud": 1,

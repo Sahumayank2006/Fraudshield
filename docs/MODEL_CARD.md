@@ -115,3 +115,4 @@ Evaluated across geographic regions and transaction channels from `artifacts/fai
 2. **Human-in-the-Loop Safeguard**: Automated blocking is restricted strictly to $P \ge 0.0591$. Intermediate risk routes to a human review queue capped at $\le 6.0/1\text{k}$ transactions.
 3. **Data Minimization**: Full compliance with the DPDP Act 2023: all account and device identifiers are pseudonymized via SHA-256 with rotating salt; feature store states expire dynamically after 7 days of inactivity.
 4. **Drift Surveillance**: Decile PSI tracking triggers automated alerts when score drift exceeds $\text{PSI} \ge 0.25$, paired with one-click atomic rollback (`POST /api/rollback`).
+

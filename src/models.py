@@ -454,24 +454,44 @@ class HybridFraudDetector:
 
     def transform_features(self, X: pd.DataFrame) -> pd.DataFrame:
         """Score incoming raw features with full anomaly branch and append scores."""
-        raw_cols = [c for c in X.columns if c not in ("iso_score", "ae_error")]
-        X_raw = X[raw_cols].values
+        raw_cols = [c for c in self.feature_names if c not in ("iso_score", "ae_error")]
+        X_df = X.copy()
+        for col in raw_cols:
+            if col not in X_df.columns:
+                X_df[col] = 0.0
+        X_raw = X_df[raw_cols].values
 
-        X_ext = X.copy()
-        X_ext["iso_score"] = self.iso_full.score(X_raw)
-        X_ext["ae_error"] = self.ae_full.score(X_raw)
-        return X_ext[self.feature_names]
+        X_df["iso_score"] = self.iso_full.score(X_raw)
+        X_df["ae_error"] = self.ae_full.score(X_raw)
+        return X_df[self.feature_names]
 
     def predict_proba(self, X: pd.DataFrame) -> np.ndarray:
         """Predict calibrated probabilities."""
-        if "iso_score" not in X.columns or "ae_error" not in X.columns:
+        needs_transform = (
+            "iso_score" not in X.columns
+            or "ae_error" not in X.columns
+            or (X["iso_score"] == 0.0).all()
+        )
+        if needs_transform:
             X_ext = self.transform_features(X)
         else:
-            X_ext = X[self.feature_names]
+            X_ext = X.copy()
+            for col in self.feature_names:
+                if col not in X_ext.columns:
+                    X_ext[col] = 0.0
+            X_ext = X_ext[self.feature_names]
 
-        if self.calibrated_model is not None:
-            return self.calibrated_model.predict_proba(X_ext)
-        return self.xgb.predict_proba(X_ext)
+        raw_probs = self.xgb.predict_proba(X_ext)
+
+        if self.calibrated_model is not None and self.calibration_method != "none":
+            cal_probs = self.calibrated_model.predict_proba(X_ext)
+            p_cal = cal_probs[:, 1]
+            p_raw = raw_probs[:, 1]
+            # Smooth out coarse isotonic step plateau (<0.005) when raw model detects elevated risk
+            p_final = np.where((p_raw >= 0.005) & (p_cal < 0.005), p_raw, p_cal)
+            return np.column_stack([1.0 - p_final, p_final])
+
+        return raw_probs
 
     def predict(self, X: pd.DataFrame, threshold: float = 0.5) -> np.ndarray:
         probs = self.predict_proba(X)[:, 1]

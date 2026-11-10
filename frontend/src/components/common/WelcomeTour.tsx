@@ -103,3 +103,4 @@ export const WelcomeTour: React.FC<WelcomeTourProps> = ({ onStartPresentation })
     </div>
   );
 };
+

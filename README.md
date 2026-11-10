@@ -206,3 +206,4 @@ For deeper evaluation and oral defense, refer directly to our specialized docume
 - [**Live Demo Runbook (`docs/DEMO_SCRIPT.md`)**](file:///c:/Users/licsa/Downloads/fraud%20detaction/docs/DEMO_SCRIPT.md): Minute-by-minute presentation script and 2-minute emergency fallback.
 - [**Pre-Flight Checklist (`docs/DEMO_DAY_CHECKLIST.md`)**](file:///c:/Users/licsa/Downloads/fraud%20detaction/docs/DEMO_DAY_CHECKLIST.md): Hardware, environment, and startup verification steps.
 - [**Architectural Decisions (`docs/DECISIONS.md`)**](file:///c:/Users/licsa/Downloads/fraud%20detaction/docs/DECISIONS.md): Justification for key design judgments and technical trade-offs.
+

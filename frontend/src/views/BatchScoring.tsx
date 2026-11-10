@@ -599,3 +599,4 @@ export const BatchScoring: React.FC = () => {
     </div>
   );
 };
+

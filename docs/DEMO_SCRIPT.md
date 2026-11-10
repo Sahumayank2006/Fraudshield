@@ -121,3 +121,4 @@ Use this compressed script if the evaluators or committee allocate only two minu
    - Jump to **§04 Threshold Lab** (`G 4`). Drag the threshold handles on the mirrored density plot, show the capacity check ($\le 6.0/1\text{k}$), and click *Snap to Optimal Policy*.
 3. **Minute 1:30 – 2:00 (Governance & Rollback)**:
    - Jump to **§07 Drift & Ops** (`G 7`). Show decile PSI tracking, explain the 7-day maturation embargo, and demonstrate one-click challenger promotion and rollback.
+

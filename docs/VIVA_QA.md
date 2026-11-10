@@ -214,3 +214,4 @@ In `src/evaluate.py`, point estimates (e.g., PR-AUC = 0.930) can be noisy. Fraud
 This yields our verified $95\%$ bootstrap confidence interval:
 $$\text{PR-AUC} = 0.930 \quad [0.892, 0.959]$$
 proving statistical significance at the $p < 0.01$ level over baseline Logistic Regression ($[0.245, 0.350]$).
+

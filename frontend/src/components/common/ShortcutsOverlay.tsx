@@ -171,3 +171,4 @@ export const ShortcutsOverlay: React.FC<ShortcutsOverlayProps> = ({
     </div>
   );
 };
+

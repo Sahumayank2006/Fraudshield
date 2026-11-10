@@ -111,3 +111,4 @@ If the stream indicator in the header turns grey ("Paused"):
 If you performed test actions and want a clean slate:
 - On §02 Live Desk, click the **Reset** button.
 - SQLite database preserves audit logs while resetting in-memory session counters.
+
