@@ -1,8 +1,6 @@
 # FraudShield: Complete End-to-End System Documentation
 **Production-Grade Financial Fraud Prevention Prototype & Enterprise Defense Console**
 
----
-
 ## Table of Contents
 1. [Executive Summary & The Big Picture](#1-executive-summary--the-big-picture)
 2. [High-Level Architecture & System Workflow (With Diagrams)](#2-high-level-architecture--system-workflow-with-diagrams)
@@ -1293,3 +1291,4 @@ Then open your browser to:
 
 ---
 *End of Complete Project Documentation.*
+

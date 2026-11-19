@@ -153,6 +153,11 @@ def main() -> None:
     demo_parser = subparsers.add_parser("demo", help="Train if needed and launch demo server")
     demo_parser.add_argument("--host", default="127.0.0.1", help="Host interface (default 127.0.0.1)")
     demo_parser.add_argument("--port", type=int, default=8000, help="Port (default 8000)")
+    # demo & serve
+    for alias in ("demo", "serve"):
+        p = subparsers.add_parser(alias, help="Launch FraudDesk demo server & UI")
+        p.add_argument("--host", default="127.0.0.1", help="Host interface (default 127.0.0.1)")
+        p.add_argument("--port", type=int, default=8000, help="Port (default 8000)")
 
     # test
     test_parser = subparsers.add_parser("test", help="Execute pytest test suite")
@@ -168,6 +173,7 @@ def main() -> None:
         "train-fast": cmd_train_fast,
         "train": cmd_train,
         "demo": cmd_demo,
+        "serve": cmd_demo,
         "test": cmd_test,
     }
 
